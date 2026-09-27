@@ -1,19 +1,20 @@
+# 🕉️ VEDIKA (वेदिका)
+
 <div align="center">
 
-# 🕉️ VEDIKA (वेदिका)
 ### *India’s Digital Vedic, Spiritual & Religious Services Ecosystem & Marketplace*
 
 > **परंपरा, आपके द्वार।**  
 > *Transforming India's fragmented devotional and spiritual landscape into a trusted, unified, modern technology platform.*
 
-[![Status: Blueprint Stage](https://img.shields.io/badge/Status-Architectural%20Blueprint-FF6B00?style=for-the-badge&logo=gitbook&logoColor=white)]()
+[![Status: Active Development](https://img.shields.io/badge/Status-Active%20Development-FF6B00?style=for-the-badge&logo=android&logoColor=white)]()
 [![Domain: Devotional Tech / FaithTech](https://img.shields.io/badge/Domain-FaithTech%20%2F%20Vedic%20Marketplace-7B2CBF?style=for-the-badge)]()
-[![Ecosystem: Full--Stack Platform](https://img.shields.io/badge/Platform-Consumer%20App%20%7C%20Provider%20OS%20%7C%20Temple%20SaaS-008080?style=for-the-badge)]()
+[![Ecosystem: Android App](https://img.shields.io/badge/Platform-Android%20%7C%20Gemini%20AI-008080?style=for-the-badge&logo=android)]()
 [![Target: Pan--India & NRI Diaspora](https://img.shields.io/badge/Reach-Pan--India%20%26%20Global%20Devotees-1E3A8A?style=for-the-badge)]()
 
 <br/>
 
-[Overview](#-1-executive-overview) • [The Core Problem](#-2-the-core-problem--the-big-idea) • [Product Universe](#-3-the-vedika-service-universe) • [Inter-City Mobility](#-4-inter-city-pandit--ritual-dispatch) • [System Architecture](#-5-technology-architecture--system-design) • [Business Model](#-6-business--monetization-model) • [Complete Blueprint](#-7-complete-business-blueprint)
+[Overview](#-1-executive-overview) • [Mobile App Setup](#-2-android-app-setup--local-run) • [The Core Problem](#-3-the-core-problem--the-big-idea) • [Product Universe](#-4-the-vedika-service-universe) • [Inter-City Mobility](#-5-inter-city-pandit--ritual-dispatch) • [System Architecture](#-6-technology-architecture--system-design) • [Complete Blueprint](#-7-complete-business-blueprint)
 
 ---
 
@@ -41,7 +42,32 @@ From discovery and verified credentials to cross-city travel scheduling, standar
 
 ---
 
-## 💡 2. The Core Problem & The Big Idea
+## 📱 2. Android App Setup & Local Run
+
+VEDIKA's mobile client is powered by Android and Google Gemini AI.
+
+### Prerequisites
+- [Android Studio](https://developer.android.com/studio) (Giraffe or newer recommended)
+- Android SDK 34+
+- Gemini API Key
+
+### Running Locally
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/mohitraj8503/VEDIKA.git
+   cd VEDIKA
+   ```
+2. Open **Android Studio** and select **Open**, selecting this project directory.
+3. Allow Android Studio to sync Gradle and download dependencies.
+4. Create a `.env` file in the root directory (based on `.env.example`):
+   ```env
+   GEMINI_API_KEY=your_gemini_api_key_here
+   ```
+5. Build and launch on an emulator or physical device.
+
+---
+
+## 💡 3. The Core Problem & The Big Idea
 
 ### ❌ The Status Quo ("Pandit Ji ka number hai?")
 * **High Fragmentation:** 95%+ of religious and ritual bookings in India occur offline via unverified references.
@@ -54,7 +80,7 @@ From discovery and verified credentials to cross-city travel scheduling, standar
 
 ---
 
-## 🌌 3. The VEDIKA Service Universe
+## 🌌 4. The VEDIKA Service Universe
 
 | Vertical | Services Included | Value Proposition |
 | :--- | :--- | :--- |
@@ -67,7 +93,7 @@ From discovery and verified credentials to cross-city travel scheduling, standar
 
 ---
 
-## 🚆 4. Inter-City Pandit & Ritual Dispatch
+## 🚆 5. Inter-City Pandit & Ritual Dispatch
 
 One of VEDIKA's core differentiators is its structured **Cross-City Priest Logistics Engine**:
 
@@ -91,12 +117,12 @@ sequenceDiagram
 
 ---
 
-## 🏗️ 5. Technology Architecture & System Design
+## 🏗️ 6. Technology Architecture & System Design
 
 VEDIKA is architected as an enterprise-grade, scalable multi-sided platform:
 
 ### High-Level Tech Stack
-* **Web & Mobile Apps:** Next.js 16 (App Router), React Native / Flutter for Cross-Platform Consumer & Provider Apps.
+* **Client App:** Android (Jetpack Compose / Kotlin), Google Gemini AI Studio integration.
 * **Core API & Microservices:** Node.js / TypeScript, FastAPI (AI/Muhurat Engine).
 * **Databases:** PostgreSQL (Relational transactions & bookings), Redis (High-speed caching & availability locks), Pinecone (Semantic search for rituals and scriptures).
 * **Payments & Escrow:** UPI AutoPay, Razorpay / Stripe (Global NRI remittances), Smart Escrow Payouts.
@@ -112,7 +138,7 @@ VEDIKA is architected as an enterprise-grade, scalable multi-sided platform:
 
 ---
 
-## 💰 6. Business & Monetization Model
+## 💰 7. Business & Monetization Model
 
 1. **Marketplace Commission:** 10% – 20% platform take-rate on ritual service bookings.
 2. **Samagri E-Commerce Margin:** 25% – 40% margin on certified pure puja kits and spiritual merchandise.
@@ -122,16 +148,9 @@ VEDIKA is architected as an enterprise-grade, scalable multi-sided platform:
 
 ---
 
-## 📑 7. Complete Business Blueprint
+## 📑 8. Complete Business Blueprint
 
 The complete, unabridged **84-section architectural and business blueprint** is documented in [`VEDIKA_Business_Blueprint.md`](./VEDIKA_Business_Blueprint.md).
-
-It covers:
-- Complete Service Taxonomy (Havans, Kathas, Sanskars, Pilgrimages)
-- Smart Matching & Dynamic Pricing Models
-- Provider Verification & KYC Tiers (Veda Pathshala accreditation, background checks)
-- Trust, Safety & Ethical Guidelines
-- 5-Year Financial & Go-To-Market Projections
 
 ---
 

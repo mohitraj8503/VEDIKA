@@ -1,0 +1,6 @@
+{
+  "name": "VEDIKA",
+  "description": "India's Digital Vedic, Spiritual & Religious Services Marketplace — परंपरा, आपके द्वार।",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
