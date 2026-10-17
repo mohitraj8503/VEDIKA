@@ -221,19 +221,19 @@ fun VedikaBottomBar(
         color = VedikaSurface,
         modifier = modifier
             .fillMaxWidth()
-            .shadow(12.dp, spotColor = Color(0x18000000))
+            .shadow(16.dp, spotColor = Color(0x1F000000))
     ) {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
                 .windowInsetsPadding(WindowInsets.navigationBars)
         ) {
-            HorizontalDivider(color = VedikaDivider, thickness = 1.dp)
+            HorizontalDivider(color = VedikaDivider, thickness = 0.8.dp)
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(68.dp)
-                    .padding(horizontal = 8.dp),
+                    .height(64.dp)
+                    .padding(horizontal = 4.dp),
                 horizontalArrangement = Arrangement.SpaceAround,
                 verticalAlignment = Alignment.CenterVertically
             ) {
@@ -252,18 +252,18 @@ fun VedikaBottomBar(
                     onClick = { onTabSelected("Bookings") }
                 )
                 BottomNavItem(
+                    label = "Panchang",
+                    iconFilled = Icons.Filled.DateRange,
+                    iconOutlined = Icons.Outlined.DateRange,
+                    isSelected = currentTab == "Panchang",
+                    onClick = { onTabSelected("Panchang") }
+                )
+                BottomNavItem(
                     label = "Explore",
                     iconFilled = Icons.Filled.Explore,
                     iconOutlined = Icons.Outlined.Explore,
                     isSelected = currentTab == "Explore",
                     onClick = { onTabSelected("Explore") }
-                )
-                BottomNavItem(
-                    label = "Chat",
-                    iconFilled = Icons.Filled.ChatBubble,
-                    iconOutlined = Icons.Outlined.ChatBubbleOutline,
-                    isSelected = currentTab == "Chat",
-                    onClick = { onTabSelected("Chat") }
                 )
                 BottomNavItem(
                     label = "Profile",

@@ -10,6 +10,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowForward
 import androidx.compose.material.icons.filled.*
+import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -18,46 +19,50 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil.compose.AsyncImage
+import coil.request.ImageRequest
 import com.example.ui.components.VedikaBottomBar
 import com.example.ui.theme.*
 import com.example.viewmodel.Screen
+import com.example.viewmodel.VedikaUiState
 import com.example.viewmodel.VedikaViewModel
 
 @Composable
 fun ProfileScreen(
     viewModel: VedikaViewModel,
-    uiState: com.example.viewmodel.VedikaUiState,
+    uiState: VedikaUiState,
     modifier: Modifier = Modifier
 ) {
     Scaffold(
         containerColor = VedikaCream,
         topBar = {
-            Surface(color = VedikaCream, modifier = Modifier.fillMaxWidth()) {
+            Surface(
+                color = VedikaCream,
+                modifier = Modifier.fillMaxWidth()
+            ) {
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(horizontal = 20.dp, vertical = 14.dp),
-                    horizontalArrangement = Arrangement.SpaceBetween,
+                        .padding(horizontal = 20.dp, vertical = 10.dp)
+                        .windowInsetsPadding(WindowInsets.statusBars),
+                    horizontalArrangement = Arrangement.End,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Text(
-                        text = "My Profile",
-                        style = MaterialTheme.typography.headlineLarge.copy(
-                            fontWeight = FontWeight.Bold,
-                            color = VedikaTextDark,
-                            fontSize = 26.sp
-                        )
-                    )
-
-                    IconButton(onClick = { viewModel.navigateTo(Screen.MoreMenu) }, modifier = Modifier.size(48.dp)) {
+                    IconButton(
+                        onClick = { viewModel.navigateTo(Screen.MoreMenu) },
+                        modifier = Modifier.size(40.dp)
+                    ) {
                         Icon(
-                            imageVector = Icons.Default.Menu,
-                            contentDescription = "More Menu",
-                            tint = VedikaOrange,
-                            modifier = Modifier.size(26.dp)
+                            imageVector = Icons.Outlined.Settings,
+                            contentDescription = "Settings",
+                            tint = VedikaTextDark,
+                            modifier = Modifier.size(24.dp)
                         )
                     }
                 }
@@ -74,236 +79,218 @@ fun ProfileScreen(
             modifier = modifier
                 .fillMaxSize()
                 .padding(innerPadding),
-            contentPadding = PaddingValues(horizontal = 20.dp, vertical = 10.dp)
+            contentPadding = PaddingValues(horizontal = 20.dp, vertical = 6.dp),
+            verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            // User Info Header Card with Real Portrait
+            // 1. Divine Aura Profile Header (Mohit Raj)
             item {
-                Surface(
-                    shape = RoundedCornerShape(22.dp),
-                    color = VedikaSurface,
-                    border = BorderStroke(1.dp, VedikaCardBorder),
-                    modifier = Modifier.fillMaxWidth()
+                Column(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    Row(
-                        modifier = Modifier.padding(18.dp),
-                        verticalAlignment = Alignment.CenterVertically
+                    // Golden aura halo wrapper
+                    Box(
+                        contentAlignment = Alignment.Center
                     ) {
+                        // Radiant golden sunburst ring
                         Box(
                             modifier = Modifier
-                                .size(70.dp)
+                                .size(108.dp)
                                 .clip(CircleShape)
                                 .background(
-                                    brush = Brush.linearGradient(
-                                        colors = listOf(VedikaOrange, VedikaGold)
+                                    brush = Brush.radialGradient(
+                                        colors = listOf(
+                                            Color(0xFFFFD54F),
+                                            Color(0xFFFFB300),
+                                            Color(0x00FF8F00)
+                                        )
                                     )
-                                ),
-                            contentAlignment = Alignment.Center
+                                )
+                        )
+
+                        // Devotee Photo with golden border
+                        Box(
+                            modifier = Modifier
+                                .size(92.dp)
+                                .clip(CircleShape)
+                                .border(3.dp, Color(0xFFFFD54F), CircleShape)
                         ) {
-                            Text(
-                                text = uiState.userName.firstOrNull()?.toString() ?: "U",
-                                style = MaterialTheme.typography.headlineMedium.copy(
-                                    fontWeight = FontWeight.Bold,
-                                    color = Color.White,
-                                    fontSize = 28.sp
-                                )
+                            AsyncImage(
+                                model = ImageRequest.Builder(LocalContext.current)
+                                    .data("https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=400&q=80")
+                                    .crossfade(true)
+                                    .build(),
+                                contentDescription = "Mohit Raj",
+                                contentScale = ContentScale.Crop,
+                                modifier = Modifier.fillMaxSize()
                             )
                         }
 
-                        Spacer(modifier = Modifier.width(16.dp))
-
-                        Column(modifier = Modifier.weight(1f)) {
-                            Text(
-                                text = uiState.userName,
-                                style = MaterialTheme.typography.titleLarge.copy(
-                                    fontWeight = FontWeight.Bold,
-                                    color = VedikaTextDark,
-                                    fontSize = 19.sp
-                                )
-                            )
-                            Spacer(modifier = Modifier.height(2.dp))
-                            Text(
-                                text = uiState.userPhone,
-                                style = MaterialTheme.typography.bodyMedium.copy(
-                                    color = VedikaTextMedium,
-                                    fontSize = 14.sp
-                                )
-                            )
-                            Text(
-                                text = uiState.userEmail,
-                                style = MaterialTheme.typography.bodySmall.copy(
-                                    color = VedikaTextMuted,
-                                    fontSize = 13.sp
-                                )
-                            )
-                        }
-
-                        IconButton(onClick = { }, modifier = Modifier.size(44.dp)) {
-                            Icon(Icons.Default.Edit, contentDescription = "Edit Profile", tint = VedikaOrange, modifier = Modifier.size(20.dp))
+                        // Crown badge 👑 at bottom-right
+                        Surface(
+                            shape = CircleShape,
+                            color = Color(0xFFFFD54F),
+                            border = BorderStroke(1.5.dp, Color.White),
+                            modifier = Modifier
+                                .size(28.dp)
+                                .align(Alignment.BottomEnd)
+                        ) {
+                            Box(contentAlignment = Alignment.Center) {
+                                Text(text = "👑", fontSize = 13.sp)
+                            }
                         }
                     }
+
+                    Spacer(modifier = Modifier.height(12.dp))
+
+                    // Name with edit pencil
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.Center
+                    ) {
+                        Text(
+                            text = uiState.userName,
+                            style = MaterialTheme.typography.titleLarge.copy(
+                                fontWeight = FontWeight.Bold,
+                                color = VedikaTextDark,
+                                fontSize = 22.sp
+                            )
+                        )
+                        Spacer(modifier = Modifier.width(6.dp))
+                        Icon(
+                            imageVector = Icons.Outlined.Edit,
+                            contentDescription = "Edit Profile",
+                            tint = VedikaOrangeDark,
+                            modifier = Modifier.size(16.dp)
+                        )
+                    }
+
+                    Spacer(modifier = Modifier.height(2.dp))
+
+                    Text(
+                        text = uiState.userEmail,
+                        style = MaterialTheme.typography.bodyMedium.copy(
+                            color = VedikaTextMuted,
+                            fontSize = 13.sp
+                        )
+                    )
                 }
-                Spacer(modifier = Modifier.height(18.dp))
             }
 
-            // Menu Items List (Larger typography, no emojis)
+            // 2. Three Stats Columns Card (12 Bookings, 5 Temples, 3 Favorites)
             item {
                 Surface(
-                    shape = RoundedCornerShape(22.dp),
+                    shape = RoundedCornerShape(20.dp),
                     color = VedikaSurface,
                     border = BorderStroke(1.dp, VedikaCardBorder),
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .shadow(3.dp, RoundedCornerShape(20.dp), spotColor = Color(0x0C000000))
                 ) {
-                    Column(modifier = Modifier.padding(vertical = 8.dp)) {
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(vertical = 16.dp),
+                        horizontalArrangement = Arrangement.SpaceEvenly,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        ProfileStatColumn(count = "12", label = "Bookings")
+                        VerticalDivider(
+                            color = VedikaDivider,
+                            modifier = Modifier.height(36.dp),
+                            thickness = 1.dp
+                        )
+                        ProfileStatColumn(count = "5", label = "Temples")
+                        VerticalDivider(
+                            color = VedikaDivider,
+                            modifier = Modifier.height(36.dp),
+                            thickness = 1.dp
+                        )
+                        ProfileStatColumn(count = "3", label = "Favorites")
+                    }
+                }
+            }
+
+            // 3. Menu List
+            item {
+                Surface(
+                    shape = RoundedCornerShape(20.dp),
+                    color = VedikaSurface,
+                    border = BorderStroke(1.dp, VedikaCardBorder),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .shadow(3.dp, RoundedCornerShape(20.dp), spotColor = Color(0x0C000000))
+                ) {
+                    Column(
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
                         ProfileMenuItem(
-                            icon = Icons.Default.CalendarMonth,
+                            icon = Icons.Outlined.ShoppingBag,
                             title = "My Bookings",
                             onClick = { viewModel.setBottomNavTab("Bookings") }
                         )
                         HorizontalDivider(color = VedikaDivider, thickness = 0.8.dp)
 
                         ProfileMenuItem(
-                            icon = Icons.Default.FavoriteBorder,
-                            title = "Saved Pandits",
+                            icon = Icons.Outlined.TempleHindu,
+                            title = "My Darshans",
+                            onClick = { viewModel.navigateTo(Screen.TempleDarshan) }
+                        )
+                        HorizontalDivider(color = VedikaDivider, thickness = 0.8.dp)
+
+                        ProfileMenuItem(
+                            icon = Icons.Outlined.BookmarkBorder,
+                            title = "Saved Temples",
+                            onClick = { viewModel.navigateTo(Screen.TempleDarshan) }
+                        )
+                        HorizontalDivider(color = VedikaDivider, thickness = 0.8.dp)
+
+                        ProfileMenuItem(
+                            icon = Icons.Outlined.Group,
+                            title = "My Pandits",
                             onClick = { viewModel.navigateTo(Screen.PanditBooking) }
                         )
                         HorizontalDivider(color = VedikaDivider, thickness = 0.8.dp)
 
                         ProfileMenuItem(
-                            icon = Icons.Default.CalendarMonth,
-                            title = if (uiState.isHindi) "दैनिक पंचांग एवं शुभ मुहूर्त" else "Daily Panchang & Muhurat",
-                            onClick = { viewModel.navigateTo(Screen.PanchangMuhurat) }
-                        )
-                        HorizontalDivider(color = VedikaDivider, thickness = 0.8.dp)
-
-                        ProfileMenuItem(
-                            icon = Icons.Default.SelfImprovement,
-                            title = if (uiState.isHindi) "मंत्र जप एवं साधना (108 Mala)" else "Mantra Japa & Sadhana",
-                            onClick = { viewModel.navigateTo(Screen.MantraJapa) }
-                        )
-                        HorizontalDivider(color = VedikaDivider, thickness = 0.8.dp)
-
-                        ProfileMenuItem(
-                            icon = Icons.Default.LocationOn,
-                            title = "City: ${uiState.selectedCity} (Change)",
-                            onClick = { viewModel.setBottomNavTab("Home") }
-                        )
-                        HorizontalDivider(color = VedikaDivider, thickness = 0.8.dp)
-
-                        ProfileMenuItem(
-                            icon = Icons.Default.Translate,
-                            title = if (uiState.isHindi) "भाषा: हिन्दी (Tap to switch to English)" else "Language: English (हिन्दी में बदलें)",
-                            onClick = { viewModel.toggleLanguage() }
-                        )
-                        HorizontalDivider(color = VedikaDivider, thickness = 0.8.dp)
-
-                        ProfileMenuItem(
-                            icon = Icons.Default.Notifications,
+                            icon = Icons.Outlined.Notifications,
                             title = "Notifications",
+                            hasRedDot = uiState.notifications.any { it.isUnread },
                             onClick = { viewModel.navigateTo(Screen.Notifications) }
                         )
                         HorizontalDivider(color = VedikaDivider, thickness = 0.8.dp)
 
                         ProfileMenuItem(
-                            icon = Icons.Default.Headphones,
-                            title = "Vedic Support & Helpdesk",
+                            icon = Icons.Outlined.HelpOutline,
+                            title = "Help & Support",
                             onClick = { viewModel.navigateTo(Screen.Chat) }
                         )
                         HorizontalDivider(color = VedikaDivider, thickness = 0.8.dp)
 
                         ProfileMenuItem(
-                            icon = Icons.Default.Settings,
-                            title = "More Options & Vedic Calendar",
+                            icon = Icons.Outlined.Settings,
+                            title = "Settings",
                             onClick = { viewModel.navigateTo(Screen.MoreMenu) }
                         )
                     }
                 }
-                Spacer(modifier = Modifier.height(20.dp))
             }
 
-            // "Become a Pandit" Banner Card
-            item {
-                Surface(
-                    onClick = { viewModel.navigateTo(Screen.ProviderDashboard) },
-                    shape = RoundedCornerShape(20.dp),
-                    color = VedikaSaffronLight,
-                    border = BorderStroke(1.dp, VedikaOrange.copy(alpha = 0.3f)),
-                    modifier = Modifier.fillMaxWidth()
-                ) {
-                    Row(
-                        modifier = Modifier.padding(18.dp),
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Surface(
-                            shape = CircleShape,
-                            color = VedikaOrange,
-                            modifier = Modifier.size(48.dp)
-                        ) {
-                            Box(contentAlignment = Alignment.Center) {
-                                Icon(
-                                    imageVector = Icons.Default.PersonAdd,
-                                    contentDescription = null,
-                                    tint = Color.White,
-                                    modifier = Modifier.size(24.dp)
-                                )
-                            }
-                        }
-                        Spacer(modifier = Modifier.width(16.dp))
-                        Column(modifier = Modifier.weight(1f)) {
-                            Text(
-                                text = "Become a Pandit",
-                                style = MaterialTheme.typography.titleMedium.copy(
-                                    fontWeight = FontWeight.Bold,
-                                    color = VedikaOrangeDark,
-                                    fontSize = 17.sp
-                                )
-                            )
-                            Spacer(modifier = Modifier.height(2.dp))
-                            Text(
-                                text = "Join our verified pandit network & manage bookings.",
-                                style = MaterialTheme.typography.bodyMedium.copy(
-                                    color = VedikaTextMedium,
-                                    fontSize = 13.sp
-                                )
-                            )
-                        }
-                        Icon(
-                            imageVector = Icons.AutoMirrored.Filled.ArrowForward,
-                            contentDescription = null,
-                            tint = VedikaOrangeDark,
-                            modifier = Modifier.size(22.dp)
-                        )
-                    }
-                }
-                Spacer(modifier = Modifier.height(18.dp))
-            }
-
-            // Quick App Switchers (Provider & Admin Portals)
+            // Bottom logout / version info
             item {
                 Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.spacedBy(12.dp)
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(vertical = 8.dp),
+                    horizontalArrangement = Arrangement.Center
                 ) {
-                    OutlinedButton(
-                        onClick = { viewModel.navigateTo(Screen.ProviderDashboard) },
-                        shape = RoundedCornerShape(14.dp),
-                        border = BorderStroke(1.dp, VedikaCardBorder),
-                        modifier = Modifier
-                            .weight(1f)
-                            .height(48.dp)
-                    ) {
-                        Text("Provider View", color = VedikaTextDark, fontSize = 13.sp, fontWeight = FontWeight.Bold)
-                    }
-
-                    OutlinedButton(
-                        onClick = { viewModel.navigateTo(Screen.AdminDashboard) },
-                        shape = RoundedCornerShape(14.dp),
-                        border = BorderStroke(1.dp, VedikaCardBorder),
-                        modifier = Modifier
-                            .weight(1f)
-                            .height(48.dp)
-                    ) {
-                        Text("Admin View", color = VedikaTextDark, fontSize = 13.sp, fontWeight = FontWeight.Bold)
-                    }
+                    Text(
+                        text = "VEDIKA Version 2.4.0 • Sacred & Secure",
+                        style = MaterialTheme.typography.bodySmall.copy(
+                            color = VedikaTextMuted,
+                            fontSize = 11.sp
+                        )
+                    )
                 }
             }
         }
@@ -311,39 +298,85 @@ fun ProfileScreen(
 }
 
 @Composable
-fun ProfileMenuItem(
-    icon: androidx.compose.ui.graphics.vector.ImageVector,
+private fun ProfileStatColumn(
+    count: String,
+    label: String
+) {
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier.width(90.dp)
+    ) {
+        Text(
+            text = count,
+            style = MaterialTheme.typography.titleLarge.copy(
+                fontWeight = FontWeight.ExtraBold,
+                color = VedikaTextDark,
+                fontSize = 18.sp
+            )
+        )
+        Spacer(modifier = Modifier.height(2.dp))
+        Text(
+            text = label,
+            style = MaterialTheme.typography.labelSmall.copy(
+                fontWeight = FontWeight.Medium,
+                color = VedikaTextMuted,
+                fontSize = 12.sp
+            )
+        )
+    }
+}
+
+@Composable
+private fun ProfileMenuItem(
+    icon: ImageVector,
     title: String,
+    hasRedDot: Boolean = false,
     onClick: () -> Unit
 ) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .clickable(onClick = onClick)
-            .padding(horizontal = 18.dp, vertical = 16.dp),
-        verticalAlignment = Alignment.CenterVertically
+            .padding(horizontal = 16.dp, vertical = 14.dp),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.SpaceBetween
     ) {
-        Icon(
-            imageVector = icon,
-            contentDescription = null,
-            tint = VedikaOrange,
-            modifier = Modifier.size(24.dp)
-        )
-        Spacer(modifier = Modifier.width(16.dp))
-        Text(
-            text = title,
-            style = MaterialTheme.typography.bodyLarge.copy(
-                fontWeight = FontWeight.SemiBold,
-                color = VedikaTextDark,
-                fontSize = 16.sp
-            ),
-            modifier = Modifier.weight(1f)
-        )
-        Icon(
-            imageVector = Icons.Default.ChevronRight,
-            contentDescription = null,
-            tint = VedikaTextMuted,
-            modifier = Modifier.size(22.dp)
-        )
+        Row(
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Icon(
+                imageVector = icon,
+                contentDescription = title,
+                tint = VedikaOrangeDark,
+                modifier = Modifier.size(22.dp)
+            )
+            Spacer(modifier = Modifier.width(14.dp))
+            Text(
+                text = title,
+                style = MaterialTheme.typography.bodyMedium.copy(
+                    fontWeight = FontWeight.SemiBold,
+                    color = VedikaTextDark,
+                    fontSize = 14.sp
+                )
+            )
+        }
+
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            if (hasRedDot) {
+                Box(
+                    modifier = Modifier
+                        .size(8.dp)
+                        .clip(CircleShape)
+                        .background(VedikaRed)
+                )
+                Spacer(modifier = Modifier.width(8.dp))
+            }
+            Icon(
+                imageVector = Icons.AutoMirrored.Filled.ArrowForward,
+                contentDescription = null,
+                tint = Color(0xFFC4B8AB),
+                modifier = Modifier.size(16.dp)
+            )
+        }
     }
 }
