@@ -5,13 +5,13 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowForward
 import androidx.compose.material.icons.filled.*
+import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -20,6 +20,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
@@ -29,9 +30,6 @@ import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.example.data.VedikaData
-import com.example.model.FestivalEvent
-import com.example.model.PanditProfile
-import com.example.model.ServiceCategory
 import com.example.model.ServiceItem
 import com.example.ui.components.*
 import com.example.ui.theme.*
@@ -68,10 +66,10 @@ fun HomeScreen(
             modifier = modifier
                 .fillMaxSize()
                 .padding(innerPadding),
-            contentPadding = PaddingValues(bottom = 36.dp),
+            contentPadding = PaddingValues(bottom = 32.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            // 1. Personalized Greeting with Large Headline
+            // 1. Personalized Greeting Header with Devotee Portrait
             item {
                 Row(
                     modifier = Modifier
@@ -82,659 +80,411 @@ fun HomeScreen(
                 ) {
                     Column(modifier = Modifier.weight(1f)) {
                         Text(
-                            text = if (uiState.isHindi) "नमस्ते, ${uiState.userName.split(" ").firstOrNull() ?: ""}" else "Namaste, ${uiState.userName.split(" ").firstOrNull() ?: ""}",
-                            style = MaterialTheme.typography.titleMedium.copy(
-                                color = VedikaOrangeDark,
-                                fontWeight = FontWeight.Bold,
-                                fontSize = 16.sp
-                            )
-                        )
-                        Spacer(modifier = Modifier.height(2.dp))
-                        Text(
-                            text = if (uiState.isHindi) "प्रामाणिक वैदिक सेवाएं\nएवं आचार्य बुकिंग" else "Divine Blessings\nAt Your Doorstep",
-                            style = MaterialTheme.typography.headlineLarge.copy(
+                            text = "Good Morning\n${uiState.userName.split(" ").firstOrNull() ?: "Mohit"} 👋",
+                            style = MaterialTheme.typography.headlineMedium.copy(
                                 fontWeight = FontWeight.ExtraBold,
                                 color = VedikaTextDark,
-                                fontSize = 28.sp,
-                                lineHeight = 36.sp
+                                fontSize = 26.sp,
+                                lineHeight = 32.sp
+                            )
+                        )
+                        Spacer(modifier = Modifier.height(4.dp))
+                        Text(
+                            text = "May your day be filled with\npeace and positivity ✨",
+                            style = MaterialTheme.typography.bodyMedium.copy(
+                                color = VedikaTextMuted,
+                                fontSize = 13.sp,
+                                lineHeight = 18.sp
                             )
                         )
                     }
 
-                    // Direct Profile Entry Avatar
+                    // Avatar with golden border & halo
                     Surface(
                         onClick = { viewModel.setBottomNavTab("Profile") },
                         shape = CircleShape,
-                        color = VedikaCreamDark,
+                        color = Color(0xFFFFF3E0),
                         border = BorderStroke(2.dp, VedikaGold),
                         modifier = Modifier
-                            .size(52.dp)
-                            .shadow(3.dp, CircleShape, spotColor = Color(0x15000000))
+                            .size(54.dp)
+                            .shadow(4.dp, CircleShape, spotColor = Color(0x20000000))
                     ) {
                         Box(contentAlignment = Alignment.Center) {
-                            Text(
-                                text = uiState.userName.firstOrNull()?.toString() ?: "U",
-                                style = MaterialTheme.typography.titleLarge.copy(
-                                    fontWeight = FontWeight.Bold,
-                                    color = VedikaOrangeDark,
-                                    fontSize = 20.sp
-                                )
+                            AsyncImage(
+                                model = ImageRequest.Builder(LocalContext.current)
+                                    .data("https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=300&q=80")
+                                    .crossfade(true)
+                                    .build(),
+                                contentDescription = "Profile",
+                                contentScale = ContentScale.Crop,
+                                modifier = Modifier.fillMaxSize()
                             )
                         }
                     }
                 }
             }
 
-            // 2. Large Attractive Search Bar (Touch target 58dp)
+            // 2. Search Bar with Mic & Filter Icons
             item {
                 Surface(
                     onClick = { viewModel.navigateTo(Screen.Search) },
                     shape = RoundedCornerShape(20.dp),
                     color = VedikaSurface,
-                    border = BorderStroke(1.2.dp, VedikaCardBorder),
+                    border = BorderStroke(1.dp, VedikaCardBorder),
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(horizontal = 20.dp)
-                        .height(58.dp)
-                        .shadow(4.dp, RoundedCornerShape(20.dp), spotColor = Color(0x10000000))
+                        .height(54.dp)
+                        .shadow(3.dp, RoundedCornerShape(20.dp), spotColor = Color(0x0C000000))
                 ) {
                     Row(
                         modifier = Modifier
                             .fillMaxSize()
-                            .padding(horizontal = 18.dp),
+                            .padding(horizontal = 16.dp),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Icon(
                             imageVector = Icons.Default.Search,
                             contentDescription = "Search",
-                            tint = VedikaOrange,
-                            modifier = Modifier.size(26.dp)
+                            tint = VedikaTextMuted,
+                            modifier = Modifier.size(22.dp)
                         )
-                        Spacer(modifier = Modifier.width(14.dp))
+                        Spacer(modifier = Modifier.width(10.dp))
                         Text(
-                            text = if (uiState.isHindi) "पंडित, पूजा, मंदिर दर्शन, कथा खोजें..." else "Search for Pandit, Puja, Temple, Katha...",
-                            style = MaterialTheme.typography.bodyLarge.copy(
+                            text = "Search puja, temple, pandit...",
+                            style = MaterialTheme.typography.bodyMedium.copy(
                                 color = VedikaTextMuted,
-                                fontSize = 15.sp
+                                fontSize = 14.sp
                             ),
                             modifier = Modifier.weight(1f)
                         )
-                        Surface(
-                            shape = CircleShape,
-                            color = VedikaSaffronLight,
-                            modifier = Modifier.size(34.dp)
-                        ) {
-                            Box(contentAlignment = Alignment.Center) {
-                                Icon(
-                                    imageVector = Icons.Default.Tune,
-                                    contentDescription = "Filter",
-                                    tint = VedikaOrangeDark,
-                                    modifier = Modifier.size(18.dp)
-                                )
-                            }
-                        }
-                    }
-                }
-            }
-
-            // 3. Four Prominent Quick-Action Cards (Panchang, Japa Mala, Near Me, Temple Darshan)
-            item {
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 20.dp),
-                    horizontalArrangement = Arrangement.spacedBy(10.dp)
-                ) {
-                    HomeQuickActionCard(
-                        title = if (uiState.isHindi) "पंचांग" else "Panchang",
-                        subtitle = if (uiState.isHindi) "शुभ मुहूर्त" else "Muhurat",
-                        icon = Icons.Default.CalendarMonth,
-                        accentColor = VedikaOrange,
-                        onClick = { viewModel.navigateTo(Screen.PanchangMuhurat) },
-                        modifier = Modifier.weight(1f)
-                    )
-                    HomeQuickActionCard(
-                        title = if (uiState.isHindi) "मंत्र जप" else "Jap Mala",
-                        subtitle = if (uiState.isHindi) "108 मनका" else "108 Chants",
-                        icon = Icons.Default.SelfImprovement,
-                        accentColor = VedikaGold,
-                        onClick = { viewModel.navigateTo(Screen.MantraJapa) },
-                        modifier = Modifier.weight(1f)
-                    )
-                    HomeQuickActionCard(
-                        title = if (uiState.isHindi) "नजदीकी" else "Near Me",
-                        subtitle = if (uiState.isHindi) "आचार्य मैप" else "Pandit Map",
-                        icon = Icons.Default.Place,
-                        accentColor = VedikaMaroon,
-                        onClick = { viewModel.navigateTo(Screen.NearbyMap) },
-                        modifier = Modifier.weight(1f)
-                    )
-                    HomeQuickActionCard(
-                        title = if (uiState.isHindi) "दर्शन" else "Darshan",
-                        subtitle = if (uiState.isHindi) "VIP पास" else "VIP Pass",
-                        icon = Icons.Default.TempleHindu,
-                        accentColor = VedikaOrangeDark,
-                        onClick = { viewModel.navigateTo(Screen.TempleDarshan) },
-                        modifier = Modifier.weight(1f)
-                    )
-                }
-            }
-
-            // 4. Large Today's Panchang & Shubh Muhurat Card
-            item {
-                Surface(
-                    onClick = { viewModel.navigateTo(Screen.PanchangMuhurat) },
-                    shape = RoundedCornerShape(22.dp),
-                    color = VedikaSurface,
-                    border = BorderStroke(1.2.dp, VedikaCardBorder),
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 20.dp)
-                        .shadow(4.dp, RoundedCornerShape(22.dp), spotColor = Color(0x10000000))
-                ) {
-                    Column(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .background(
-                                brush = Brush.horizontalGradient(
-                                    colors = listOf(Color(0xFFFFF9EE), Color(0xFFFFFFFF))
-                                )
-                            )
-                            .padding(18.dp)
-                    ) {
-                        Row(
-                            modifier = Modifier.fillMaxWidth(),
-                            horizontalArrangement = Arrangement.SpaceBetween,
-                            verticalAlignment = Alignment.CenterVertically
-                        ) {
-                            Row(verticalAlignment = Alignment.CenterVertically) {
-                                Surface(
-                                    shape = CircleShape,
-                                    color = VedikaSaffronLight,
-                                    modifier = Modifier.size(38.dp)
-                                ) {
-                                    Box(contentAlignment = Alignment.Center) {
-                                        Icon(
-                                            imageVector = Icons.Default.WbSunny,
-                                            contentDescription = null,
-                                            tint = VedikaOrangeDark,
-                                            modifier = Modifier.size(22.dp)
-                                        )
-                                    }
-                                }
-                                Spacer(modifier = Modifier.width(12.dp))
-                                Column {
-                                    Text(
-                                        text = if (uiState.isHindi) "आज का पंचांग एवं शुभ मुहूर्त" else "Today's Panchang & Muhurat",
-                                        fontWeight = FontWeight.Bold,
-                                        fontSize = 16.sp,
-                                        color = VedikaTextDark
-                                    )
-                                    Text(
-                                        text = "${VedikaData.todayPanchang.dateString} • ${uiState.selectedCity}",
-                                        fontSize = 13.sp,
-                                        color = VedikaTextMedium
-                                    )
-                                }
-                            }
-
-                            Surface(
-                                shape = RoundedCornerShape(10.dp),
-                                color = Color(0xFFE8F5E9)
-                            ) {
-                                Text(
-                                    text = "अभिजित मुहूर्त",
-                                    fontWeight = FontWeight.Bold,
-                                    fontSize = 12.sp,
-                                    color = Color(0xFF2E7D32),
-                                    modifier = Modifier.padding(horizontal = 10.dp, vertical = 5.dp)
-                                )
-                            }
-                        }
-
-                        Spacer(modifier = Modifier.height(14.dp))
-                        HorizontalDivider(color = VedikaDivider, thickness = 0.8.dp)
-                        Spacer(modifier = Modifier.height(12.dp))
-
-                        Row(
-                            modifier = Modifier.fillMaxWidth(),
-                            horizontalArrangement = Arrangement.SpaceBetween,
-                            verticalAlignment = Alignment.CenterVertically
-                        ) {
-                            Column {
-                                Text(
-                                    text = "तिथि: ${VedikaData.todayPanchang.tithi}",
-                                    fontSize = 14.sp,
-                                    color = VedikaTextDark,
-                                    fontWeight = FontWeight.SemiBold
-                                )
-                                Spacer(modifier = Modifier.height(2.dp))
-                                Text(
-                                    text = "नक्षत्र: ${VedikaData.todayPanchang.nakshatra} • ${VedikaData.todayPanchang.yoga}",
-                                    fontSize = 12.sp,
-                                    color = VedikaTextMedium
-                                )
-                            }
-                            Row(
-                                verticalAlignment = Alignment.CenterVertically,
-                                modifier = Modifier
-                                    .clip(RoundedCornerShape(8.dp))
-                                    .background(VedikaSaffronLight)
-                                    .padding(horizontal = 10.dp, vertical = 6.dp)
-                            ) {
-                                Text(
-                                    text = "View All",
-                                    fontSize = 13.sp,
-                                    fontWeight = FontWeight.Bold,
-                                    color = VedikaOrangeDark
-                                )
-                                Spacer(modifier = Modifier.width(4.dp))
-                                Icon(
-                                    imageVector = Icons.AutoMirrored.Filled.ArrowForward,
-                                    contentDescription = null,
-                                    tint = VedikaOrangeDark,
-                                    modifier = Modifier.size(16.dp)
-                                )
-                            }
-                        }
-                    }
-                }
-            }
-
-            // 5. Majestic Full-Width Promotional Devotional Hero Banner (Real Photography)
-            item {
-                Surface(
-                    onClick = { viewModel.startBooking("s1") },
-                    shape = RoundedCornerShape(24.dp),
-                    color = VedikaSurface,
-                    border = BorderStroke(1.dp, VedikaCardBorder),
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 20.dp)
-                        .shadow(6.dp, RoundedCornerShape(24.dp), spotColor = Color(0x18000000))
-                ) {
-                    Box(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(210.dp)
-                    ) {
-                        // Real High-Resolution Devotional Photo
-                        AsyncImage(
-                            model = ImageRequest.Builder(LocalContext.current)
-                                .data("https://images.unsplash.com/photo-1609137144813-7d9921338f24?auto=format&fit=crop&w=1200&q=80")
-                                .crossfade(true)
-                                .build(),
-                            contentDescription = "Auspicious Puja",
-                            contentScale = ContentScale.Crop,
-                            modifier = Modifier.fillMaxSize()
+                        // Mic icon
+                        Icon(
+                            imageVector = Icons.Default.Mic,
+                            contentDescription = "Voice Search",
+                            tint = VedikaTextMuted,
+                            modifier = Modifier.size(20.dp)
                         )
+                        Spacer(modifier = Modifier.width(12.dp))
+                        // Sliders / filter icon
+                        Icon(
+                            imageVector = Icons.Default.Tune,
+                            contentDescription = "Filter",
+                            tint = VedikaOrangeDark,
+                            modifier = Modifier.size(20.dp)
+                        )
+                    }
+                }
+            }
 
-                        // Rich spiritual gradient overlay for pristine text contrast
+            // 3. Golden Temple Promo Banner Card
+            item {
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 20.dp)
+                ) {
+                    Surface(
+                        onClick = { viewModel.openServiceDetail("s1") },
+                        shape = RoundedCornerShape(22.dp),
+                        color = Color(0xFFFFF7ED),
+                        border = BorderStroke(1.dp, Color(0xFFFFE0B2)),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .shadow(6.dp, RoundedCornerShape(22.dp), spotColor = Color(0x18000000))
+                    ) {
                         Box(
                             modifier = Modifier
-                                .fillMaxSize()
+                                .fillMaxWidth()
+                                .height(175.dp)
                                 .background(
                                     brush = Brush.horizontalGradient(
                                         colors = listOf(
-                                            Color(0xF59A2E00),
-                                            Color(0xD9C2410C),
-                                            Color(0x70000000)
+                                            Color(0xFFFFFAF2),
+                                            Color(0xFFFFF3E0),
+                                            Color(0xFFFFE6CC)
                                         )
                                     )
                                 )
-                        )
-
-                        // Banner Content
-                        Column(
-                            modifier = Modifier
-                                .fillMaxSize()
-                                .padding(22.dp),
-                            verticalArrangement = Arrangement.SpaceBetween
                         ) {
-                            Column {
-                                Surface(
-                                    shape = RoundedCornerShape(8.dp),
-                                    color = Color(0x33FFFFFF)
-                                ) {
-                                    Text(
-                                        text = "AUSPICIOUS VEDIC CEREMONIES",
-                                        color = Color(0xFFFFF9C4),
-                                        fontWeight = FontWeight.Bold,
-                                        fontSize = 12.sp,
-                                        modifier = Modifier.padding(horizontal = 10.dp, vertical = 4.dp)
-                                    )
-                                }
-                                Spacer(modifier = Modifier.height(10.dp))
-                                Text(
-                                    text = "Bring Divine Grace\n& Peace To Your Home",
-                                    style = MaterialTheme.typography.titleLarge.copy(
-                                        fontWeight = FontWeight.ExtraBold,
-                                        color = Color.White,
-                                        fontSize = 24.sp,
-                                        lineHeight = 31.sp
-                                    )
-                                )
-                                Spacer(modifier = Modifier.height(4.dp))
-                                Text(
-                                    text = "Verified Purohits with Complete Pure Samagri Kit",
-                                    color = Color(0xFFFFF3E0),
-                                    fontSize = 13.sp
-                                )
-                            }
-
-                            Surface(
-                                shape = RoundedCornerShape(16.dp),
-                                color = Color.White,
-                                modifier = Modifier.height(44.dp)
+                            // Right side temple visual art illustration
+                            Box(
+                                modifier = Modifier
+                                    .align(Alignment.CenterEnd)
+                                    .fillMaxHeight()
+                                    .width(170.dp)
+                                    .padding(end = 4.dp, top = 8.dp, bottom = 8.dp)
+                                    .clip(RoundedCornerShape(18.dp))
                             ) {
-                                Row(
-                                    modifier = Modifier.padding(horizontal = 20.dp),
-                                    verticalAlignment = Alignment.CenterVertically
-                                ) {
+                                TempleVisualArt(
+                                    templeName = "Baba Baidyanath Dham",
+                                    modifier = Modifier.fillMaxSize(),
+                                    cornerRadius = 18.dp
+                                )
+                            }
+
+                            // Left side banner copy & "Book Now →" button
+                            Column(
+                                modifier = Modifier
+                                    .fillMaxHeight()
+                                    .fillMaxWidth(0.62f)
+                                    .padding(start = 18.dp, top = 18.dp, bottom = 18.dp),
+                                verticalArrangement = Arrangement.SpaceBetween
+                            ) {
+                                Column {
                                     Text(
-                                        text = "Book Griha Pravesh",
-                                        style = MaterialTheme.typography.labelLarge.copy(
-                                            fontWeight = FontWeight.Bold,
-                                            color = VedikaOrangeDark,
-                                            fontSize = 15.sp
+                                        text = "Book Authentic\nPuja Services",
+                                        style = MaterialTheme.typography.titleLarge.copy(
+                                            fontWeight = FontWeight.ExtraBold,
+                                            color = VedikaTextDark,
+                                            fontSize = 20.sp,
+                                            lineHeight = 25.sp
                                         )
                                     )
-                                    Spacer(modifier = Modifier.width(8.dp))
-                                    Icon(
-                                        imageVector = Icons.AutoMirrored.Filled.ArrowForward,
-                                        contentDescription = null,
-                                        tint = VedikaOrangeDark,
-                                        modifier = Modifier.size(18.dp)
+                                    Spacer(modifier = Modifier.height(6.dp))
+                                    Text(
+                                        text = "From trusted pandits, right at your home or at sacred temples.",
+                                        style = MaterialTheme.typography.bodySmall.copy(
+                                            color = VedikaTextMedium,
+                                            fontSize = 12.sp,
+                                            lineHeight = 16.sp
+                                        ),
+                                        maxLines = 2,
+                                        overflow = TextOverflow.Ellipsis
                                     )
+                                }
+
+                                // Orange gradient pill button
+                                Box(
+                                    modifier = Modifier
+                                        .height(38.dp)
+                                        .shadow(4.dp, RoundedCornerShape(19.dp), spotColor = Color(0x30FF6B00))
+                                        .clip(RoundedCornerShape(19.dp))
+                                        .background(
+                                            brush = Brush.horizontalGradient(
+                                                colors = listOf(Color(0xFFFF6D00), Color(0xFFFF4500))
+                                            )
+                                        )
+                                        .clickable { viewModel.openServiceDetail("s1") }
+                                        .padding(horizontal = 16.dp),
+                                    contentAlignment = Alignment.Center
+                                ) {
+                                    Row(verticalAlignment = Alignment.CenterVertically) {
+                                        Text(
+                                            text = "Book Now",
+                                            style = MaterialTheme.typography.labelMedium.copy(
+                                                fontWeight = FontWeight.Bold,
+                                                color = Color.White,
+                                                fontSize = 13.sp
+                                            )
+                                        )
+                                        Spacer(modifier = Modifier.width(4.dp))
+                                        Text(
+                                            text = "→",
+                                            fontWeight = FontWeight.Bold,
+                                            color = Color.White,
+                                            fontSize = 13.sp
+                                        )
+                                    }
                                 }
                             }
                         }
                     }
-                }
-            }
 
-            // 6. Section Heading: Explore Categories
-            item {
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 20.dp, vertical = 4.dp),
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Text(
-                        text = if (uiState.isHindi) "श्रेणियां खोजें" else "Explore Categories",
-                        style = MaterialTheme.typography.titleLarge.copy(
-                            fontWeight = FontWeight.Bold,
-                            color = VedikaTextDark,
-                            fontSize = 21.sp
-                        )
-                    )
-                    Text(
-                        text = if (uiState.isHindi) "सभी देखें" else "View All",
-                        style = MaterialTheme.typography.labelLarge.copy(
-                            fontWeight = FontWeight.Bold,
-                            color = VedikaOrange,
-                            fontSize = 15.sp
-                        ),
+                    // Carousel dots below promo banner
+                    Row(
                         modifier = Modifier
-                            .clickable { viewModel.navigateTo(Screen.Explore) }
-                            .padding(4.dp)
-                    )
-                }
-            }
-
-            // Categories Grid (8 Custom Tiles with Comfortable Spacing)
-            item {
-                Column(modifier = Modifier.padding(horizontal = 16.dp)) {
-                    val rows = VedikaData.categories.chunked(4)
-                    rows.forEach { rowCategories ->
-                        Row(
+                            .fillMaxWidth()
+                            .padding(top = 10.dp),
+                        horizontalArrangement = Arrangement.Center,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Box(
                             modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(vertical = 6.dp),
-                            horizontalArrangement = Arrangement.SpaceAround
-                        ) {
-                            rowCategories.forEach { category ->
-                                CategoryIconTile(
-                                    category = category,
-                                    onClick = {
-                                        when (category.id) {
-                                            "1" -> viewModel.navigateTo(Screen.PanditBooking)
-                                            "3" -> viewModel.navigateTo(Screen.KathaBhajan)
-                                            "4" -> viewModel.navigateTo(Screen.TempleDarshan)
-                                            "7" -> viewModel.navigateTo(Screen.PujaSamagri)
-                                            else -> {
-                                                viewModel.selectCategory(category.name)
-                                                viewModel.navigateTo(Screen.Explore)
-                                            }
-                                        }
-                                    }
-                                )
-                            }
+                                .size(7.dp)
+                                .clip(CircleShape)
+                                .background(VedikaOrange)
+                        )
+                        Spacer(modifier = Modifier.width(5.dp))
+                        repeat(3) {
+                            Box(
+                                modifier = Modifier
+                                    .size(5.dp)
+                                    .clip(CircleShape)
+                                    .background(Color(0xFFD6CBC0))
+                            )
+                            Spacer(modifier = Modifier.width(5.dp))
                         }
                     }
                 }
             }
 
-            // 7. Popular Services Section
+            // 4. Quick Actions 2×4 Grid (8 rounded icon cards)
             item {
-                Row(
+                Column(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(horizontal = 20.dp, vertical = 4.dp),
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically
+                        .padding(horizontal = 20.dp),
+                    verticalArrangement = Arrangement.spacedBy(14.dp)
                 ) {
-                    Text(
-                        text = if (uiState.isHindi) "लोकप्रिय पूजा सेवाएं" else "Popular Services",
-                        style = MaterialTheme.typography.titleLarge.copy(
-                            fontWeight = FontWeight.Bold,
-                            color = VedikaTextDark,
-                            fontSize = 21.sp
+                    // Row 1: Puja Booking, Pandit Ji, Temple Darshan, Panchang
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        MockupActionIcon(
+                            icon = Icons.Outlined.LocalFlorist,
+                            label = "Puja Booking",
+                            onClick = { viewModel.setBottomNavTab("Explore") }
                         )
-                    )
-                    Text(
-                        text = if (uiState.isHindi) "सभी देखें" else "See All",
-                        style = MaterialTheme.typography.labelLarge.copy(
-                            fontWeight = FontWeight.Bold,
-                            color = VedikaOrange,
-                            fontSize = 15.sp
-                        ),
-                        modifier = Modifier
-                            .clickable { viewModel.navigateTo(Screen.Explore) }
-                            .padding(4.dp)
-                    )
-                }
-            }
+                        MockupActionIcon(
+                            icon = Icons.Outlined.Person,
+                            label = "Pandit Ji",
+                            onClick = { viewModel.navigateTo(Screen.PanditBooking) }
+                        )
+                        MockupActionIcon(
+                            icon = Icons.Outlined.TempleHindu,
+                            label = "Temple Darshan",
+                            onClick = { viewModel.navigateTo(Screen.TempleDarshan) }
+                        )
+                        MockupActionIcon(
+                            icon = Icons.Outlined.DateRange,
+                            label = "Panchang",
+                            onClick = { viewModel.setBottomNavTab("Panchang") }
+                        )
+                    }
 
-            // Popular Services Horizontal Carousel (Large Photo Cards)
-            item {
-                LazyRow(
-                    contentPadding = PaddingValues(horizontal = 20.dp),
-                    horizontalArrangement = Arrangement.spacedBy(16.dp)
-                ) {
-                    items(VedikaData.services) { service ->
-                        PopularServicePhotoCard(
-                            service = service,
-                            isFavorite = uiState.favoriteServiceIds.contains(service.id),
-                            onFavoriteClick = { viewModel.toggleFavoriteService(service.id) },
-                            onClick = { viewModel.openServiceDetail(service.id) },
-                            onBookClick = { viewModel.startBooking(service.id) }
+                    // Row 2: Mantra Jaap, Aarti & Bhajan, Spiritual Articles, Festivals/Donate
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        MockupActionIcon(
+                            icon = Icons.Outlined.SelfImprovement,
+                            label = "Mantra Jaap",
+                            onClick = { viewModel.navigateTo(Screen.MantraJapa) }
+                        )
+                        MockupActionIcon(
+                            icon = Icons.Outlined.MenuBook,
+                            label = "Spiritual Articles",
+                            onClick = { viewModel.navigateTo(Screen.KathaBhajan) }
+                        )
+                        MockupActionIcon(
+                            icon = Icons.Outlined.Festival,
+                            label = "Festivals",
+                            onClick = { viewModel.navigateTo(Screen.PujaSamagri) }
+                        )
+                        MockupActionIcon(
+                            icon = Icons.Outlined.VolunteerActivism,
+                            label = "Donate",
+                            onClick = { viewModel.navigateTo(Screen.MoreMenu) }
                         )
                     }
                 }
             }
 
-            // 8. Recommended Vedic Pandits Section (With Real Photos, Ratings, Experience)
+            // 5. Popular Pujas Section Header with "View All →"
             item {
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(horizontal = 20.dp, vertical = 4.dp),
+                        .padding(horizontal = 20.dp, vertical = 2.dp),
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Column {
-                        Text(
-                            text = if (uiState.isHindi) "अनुशंसित वैदिक आचार्य" else "Recommended Pandits",
-                            style = MaterialTheme.typography.titleLarge.copy(
-                                fontWeight = FontWeight.Bold,
-                                color = VedikaTextDark,
-                                fontSize = 21.sp
-                            )
+                    Text(
+                        text = "Popular Pujas",
+                        style = MaterialTheme.typography.titleMedium.copy(
+                            fontWeight = FontWeight.Bold,
+                            color = VedikaTextDark,
+                            fontSize = 18.sp
                         )
+                    )
+
+                    Row(
+                        modifier = Modifier
+                            .clickable { viewModel.setBottomNavTab("Explore") }
+                            .padding(4.dp),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
                         Text(
-                            text = "Verified Gurukula Scholars & Purohits",
-                            style = MaterialTheme.typography.bodySmall.copy(
-                                color = VedikaTextMedium,
+                            text = "View All",
+                            style = MaterialTheme.typography.labelMedium.copy(
+                                fontWeight = FontWeight.Bold,
+                                color = VedikaOrangeDark,
                                 fontSize = 13.sp
                             )
                         )
-                    }
-                    Text(
-                        text = "View All",
-                        style = MaterialTheme.typography.labelLarge.copy(
+                        Spacer(modifier = Modifier.width(3.dp))
+                        Text(
+                            text = "→",
                             fontWeight = FontWeight.Bold,
-                            color = VedikaOrange,
-                            fontSize = 15.sp
-                        ),
-                        modifier = Modifier
-                            .clickable { viewModel.navigateTo(Screen.PanditBooking) }
-                            .padding(4.dp)
-                    )
-                }
-            }
-
-            // Pandits Horizontal Carousel
-            item {
-                LazyRow(
-                    contentPadding = PaddingValues(horizontal = 20.dp),
-                    horizontalArrangement = Arrangement.spacedBy(16.dp)
-                ) {
-                    items(VedikaData.pandits) { pandit ->
-                        PanditHomeCard(
-                            pandit = pandit,
-                            onBookClick = {
-                                viewModel.startBooking("s1")
-                            },
-                            onClick = {
-                                viewModel.navigateTo(Screen.PanditBooking)
-                            }
+                            color = VedikaOrangeDark,
+                            fontSize = 13.sp
                         )
                     }
                 }
             }
 
-            // 9. Upcoming Festivals & Vrats Section
-            item {
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 20.dp, vertical = 4.dp),
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Text(
-                        text = if (uiState.isHindi) "आगामी पर्व एवं त्योहार" else "Upcoming Festivals",
-                        style = MaterialTheme.typography.titleLarge.copy(
-                            fontWeight = FontWeight.Bold,
-                            color = VedikaTextDark,
-                            fontSize = 21.sp
-                        )
-                    )
-                    Text(
-                        text = "Calendar",
-                        style = MaterialTheme.typography.labelLarge.copy(
-                            fontWeight = FontWeight.Bold,
-                            color = VedikaOrange,
-                            fontSize = 15.sp
-                        ),
-                        modifier = Modifier
-                            .clickable { viewModel.navigateTo(Screen.PanchangMuhurat) }
-                            .padding(4.dp)
-                    )
-                }
-            }
-
-            items(VedikaData.upcomingFestivals.take(2)) { festival ->
-                HomeFestivalCard(
-                    festival = festival,
-                    onBookClick = {
-                        viewModel.startBooking(festival.recommendedPujaId)
-                    }
-                )
-            }
-
-            // 10. Inter-City Booking Highlight Card
-            item {
-                Surface(
-                    onClick = { viewModel.navigateTo(Screen.PanditBooking) },
-                    shape = RoundedCornerShape(22.dp),
-                    color = VedikaSurface,
-                    border = BorderStroke(1.2.dp, VedikaCardBorder),
+            // 6. Popular Puja Card (Satyanarayan Puja, Griha Pravesh)
+            items(VedikaData.services.take(3)) { service ->
+                PopularPujaCard(
+                    service = service,
+                    onClick = { viewModel.openServiceDetail(service.id) },
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(horizontal = 20.dp)
-                        .shadow(4.dp, RoundedCornerShape(22.dp), spotColor = Color(0x10000000))
-                ) {
-                    Row(
-                        modifier = Modifier.padding(20.dp),
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Surface(
-                            shape = CircleShape,
-                            color = VedikaSaffronLight,
-                            modifier = Modifier.size(56.dp)
-                        ) {
-                            Box(contentAlignment = Alignment.Center) {
-                                Icon(
-                                    imageVector = Icons.Default.DirectionsTransit,
-                                    contentDescription = null,
-                                    tint = VedikaOrange,
-                                    modifier = Modifier.size(28.dp)
-                                )
-                            }
-                        }
-                        Spacer(modifier = Modifier.width(16.dp))
-                        Column(modifier = Modifier.weight(1f)) {
-                            Text(
-                                text = "Inter-City Pandit Booking",
-                                style = MaterialTheme.typography.titleMedium.copy(
-                                    fontWeight = FontWeight.Bold,
-                                    color = VedikaTextDark,
-                                    fontSize = 17.sp
-                                )
-                            )
-                            Spacer(modifier = Modifier.height(4.dp))
-                            Text(
-                                text = "Need a priest from Deoghar or Varanasi for your town? We coordinate travel and stay.",
-                                style = MaterialTheme.typography.bodyMedium.copy(
-                                    color = VedikaTextMedium,
-                                    fontSize = 13.sp,
-                                    lineHeight = 18.sp
-                                )
-                            )
-                        }
-                        Icon(
-                            imageVector = Icons.AutoMirrored.Filled.ArrowForward,
-                            contentDescription = null,
-                            tint = VedikaOrange,
-                            modifier = Modifier.size(24.dp)
-                        )
-                    }
-                }
+                )
             }
         }
     }
 }
 
 @Composable
-fun HomeQuickActionCard(
-    title: String,
-    subtitle: String,
-    icon: androidx.compose.ui.graphics.vector.ImageVector,
-    accentColor: Color,
+private fun MockupActionIcon(
+    icon: ImageVector,
+    label: String,
+    onClick: () -> Unit
+) {
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier
+            .width(76.dp)
+            .clickable(onClick = onClick)
+    ) {
+        Surface(
+            shape = RoundedCornerShape(18.dp),
+            color = Color(0xFFFFF2E6),
+            border = BorderStroke(1.dp, Color(0xFFFFDEC2)),
+            modifier = Modifier.size(56.dp)
+        ) {
+            Box(contentAlignment = Alignment.Center) {
+                Icon(
+                    imageVector = icon,
+                    contentDescription = label,
+                    tint = VedikaOrangeDark,
+                    modifier = Modifier.size(26.dp)
+                )
+            }
+        }
+        Spacer(modifier = Modifier.height(6.dp))
+        Text(
+            text = label,
+            style = MaterialTheme.typography.labelSmall.copy(
+                fontWeight = FontWeight.Medium,
+                color = VedikaTextDark,
+                fontSize = 11.sp,
+                lineHeight = 14.sp
+            ),
+            textAlign = androidx.compose.ui.text.style.TextAlign.Center,
+            maxLines = 2
+        )
+    }
+}
+
+@Composable
+private fun PopularPujaCard(
+    service: ServiceItem,
     onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -742,433 +492,92 @@ fun HomeQuickActionCard(
         onClick = onClick,
         shape = RoundedCornerShape(18.dp),
         color = VedikaSurface,
-        border = BorderStroke(1.2.dp, VedikaCardBorder),
-        modifier = modifier
-            .height(84.dp)
-            .shadow(3.dp, RoundedCornerShape(18.dp), spotColor = Color(0x0C000000))
+        border = BorderStroke(1.dp, VedikaCardBorder),
+        modifier = modifier.shadow(3.dp, RoundedCornerShape(18.dp), spotColor = Color(0x0E000000))
     ) {
-        Column(
+        Row(
             modifier = Modifier
-                .fillMaxSize()
-                .padding(horizontal = 8.dp, vertical = 10.dp),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
+                .fillMaxWidth()
+                .padding(14.dp),
+            verticalAlignment = Alignment.CenterVertically
         ) {
-            Surface(
-                shape = CircleShape,
-                color = accentColor.copy(alpha = 0.12f),
-                modifier = Modifier.size(34.dp)
-            ) {
-                Box(contentAlignment = Alignment.Center) {
-                    Icon(
-                        imageVector = icon,
-                        contentDescription = title,
-                        tint = accentColor,
-                        modifier = Modifier.size(18.dp)
-                    )
-                }
-            }
-            Spacer(modifier = Modifier.height(5.dp))
-            Text(
-                text = title,
-                style = MaterialTheme.typography.labelMedium.copy(
-                    fontWeight = FontWeight.Bold,
-                    color = VedikaTextDark,
-                    fontSize = 13.sp
-                ),
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis
-            )
-            Text(
-                text = subtitle,
-                style = MaterialTheme.typography.bodySmall.copy(
-                    color = VedikaTextMuted,
-                    fontSize = 10.sp
-                ),
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis
-            )
-        }
-    }
-}
-
-@Composable
-fun CategoryIconTile(
-    category: ServiceCategory,
-    onClick: () -> Unit
-) {
-    Column(
-        modifier = Modifier
-            .width(84.dp)
-            .clickable(onClick = onClick)
-            .padding(vertical = 4.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Surface(
-            shape = RoundedCornerShape(20.dp),
-            color = VedikaCreamDark,
-            border = BorderStroke(1.dp, VedikaCardBorder),
-            modifier = Modifier.size(64.dp)
-        ) {
-            Box(contentAlignment = Alignment.Center) {
-                CategoryVectorIcon(
-                    iconType = category.iconType,
-                    tint = VedikaOrangeDark,
-                    modifier = Modifier.size(34.dp)
-                )
-            }
-        }
-        Spacer(modifier = Modifier.height(6.dp))
-        Text(
-            text = category.name,
-            style = MaterialTheme.typography.labelSmall.copy(
-                fontWeight = FontWeight.Bold,
-                color = VedikaTextDark,
-                fontSize = 13.sp,
-                lineHeight = 16.sp
-            ),
-            maxLines = 2,
-            overflow = TextOverflow.Ellipsis,
-            textAlign = androidx.compose.ui.text.style.TextAlign.Center
-        )
-    }
-}
-
-@Composable
-fun PopularServicePhotoCard(
-    service: ServiceItem,
-    isFavorite: Boolean,
-    onFavoriteClick: () -> Unit,
-    onClick: () -> Unit,
-    onBookClick: () -> Unit
-) {
-    Surface(
-        onClick = onClick,
-        shape = RoundedCornerShape(22.dp),
-        color = VedikaSurface,
-        border = BorderStroke(1.2.dp, VedikaCardBorder),
-        modifier = Modifier
-            .width(260.dp)
-            .shadow(5.dp, RoundedCornerShape(22.dp), spotColor = Color(0x12000000))
-    ) {
-        Column {
+            // Deity / Puja artwork thumbnail
             Box(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .height(155.dp)
+                    .size(68.dp)
+                    .clip(RoundedCornerShape(14.dp))
             ) {
-                // Real Authentic Vedic Service Visual
-                VedikaServiceImage(
-                    service = service,
+                ServiceVisualArt(
+                    serviceTitle = service.title,
                     modifier = Modifier.fillMaxSize(),
-                    cornerRadius = 22.dp
+                    cornerRadius = 14.dp
                 )
-
-                // Favorite icon button on top right (touch target 48dp)
-                IconButton(
-                    onClick = onFavoriteClick,
-                    modifier = Modifier
-                        .align(Alignment.TopEnd)
-                        .padding(8.dp)
-                        .size(42.dp)
-                        .clip(CircleShape)
-                        .background(Color(0xD9FFFFFF))
-                ) {
-                    Icon(
-                        imageVector = if (isFavorite) Icons.Default.Favorite else Icons.Default.FavoriteBorder,
-                        contentDescription = "Favorite",
-                        tint = if (isFavorite) VedikaRed else VedikaTextDark,
-                        modifier = Modifier.size(22.dp)
-                    )
-                }
-
-                // Verified Badge on bottom left
-                Surface(
-                    shape = RoundedCornerShape(10.dp),
-                    color = VedikaSurface,
-                    modifier = Modifier
-                        .align(Alignment.BottomStart)
-                        .padding(10.dp)
-                ) {
-                    Row(
-                        modifier = Modifier.padding(horizontal = 9.dp, vertical = 5.dp),
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Icon(
-                            imageVector = Icons.Default.Star,
-                            contentDescription = null,
-                            tint = VedikaAmber,
-                            modifier = Modifier.size(15.dp)
-                        )
-                        Spacer(modifier = Modifier.width(4.dp))
-                        Text(
-                            text = "${service.rating} (${service.reviewCount})",
-                            style = MaterialTheme.typography.labelSmall.copy(
-                                fontWeight = FontWeight.Bold,
-                                color = VedikaTextDark,
-                                fontSize = 12.sp
-                            )
-                        )
-                    }
-                }
             }
 
-            Column(modifier = Modifier.padding(16.dp)) {
+            Spacer(modifier = Modifier.width(14.dp))
+
+            // Details
+            Column(modifier = Modifier.weight(1f)) {
                 Text(
                     text = service.title,
                     style = MaterialTheme.typography.titleMedium.copy(
                         fontWeight = FontWeight.Bold,
                         color = VedikaTextDark,
-                        fontSize = 18.sp
+                        fontSize = 16.sp
+                    )
+                )
+                Spacer(modifier = Modifier.height(2.dp))
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Icon(
+                        imageVector = Icons.Filled.Star,
+                        contentDescription = "Rating",
+                        tint = VedikaStarAmber,
+                        modifier = Modifier.size(14.dp)
+                    )
+                    Spacer(modifier = Modifier.width(3.dp))
+                    Text(
+                        text = "${service.rating} (${if (service.reviewCount >= 1000) String.format("%.1fk", service.reviewCount / 1000.0) else "${service.reviewCount}"} bookings)",
+                        style = MaterialTheme.typography.bodySmall.copy(
+                            color = VedikaTextMuted,
+                            fontSize = 12.sp
+                        )
+                    )
+                }
+                Spacer(modifier = Modifier.height(3.dp))
+                Text(
+                    text = service.shortDescription,
+                    style = MaterialTheme.typography.bodySmall.copy(
+                        color = VedikaTextMedium,
+                        fontSize = 12.sp
                     ),
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis
                 )
                 Spacer(modifier = Modifier.height(4.dp))
                 Text(
-                    text = "${service.durationHours} • ${service.panditCount} Pandit",
-                    style = MaterialTheme.typography.bodyMedium.copy(
-                        color = VedikaTextMedium,
-                        fontSize = 13.sp
+                    text = "₹${service.price}",
+                    style = MaterialTheme.typography.titleMedium.copy(
+                        fontWeight = FontWeight.ExtraBold,
+                        color = VedikaOrangeDark,
+                        fontSize = 16.sp
                     )
                 )
-                Spacer(modifier = Modifier.height(14.dp))
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Column {
-                        Text(
-                            text = "₹ ${service.price}",
-                            style = MaterialTheme.typography.titleLarge.copy(
-                                fontWeight = FontWeight.ExtraBold,
-                                color = VedikaOrangeDark,
-                                fontSize = 20.sp
-                            )
-                        )
-                        Text(
-                            text = "onwards",
-                            style = MaterialTheme.typography.labelSmall.copy(
-                                color = VedikaTextMuted,
-                                fontSize = 11.sp
-                            )
-                        )
-                    }
-                    Button(
-                        onClick = onBookClick,
-                        shape = RoundedCornerShape(14.dp),
-                        colors = ButtonDefaults.buttonColors(containerColor = VedikaOrange),
-                        contentPadding = PaddingValues(horizontal = 20.dp, vertical = 8.dp),
-                        modifier = Modifier.height(42.dp)
-                    ) {
-                        Text("Book", fontWeight = FontWeight.Bold, fontSize = 15.sp)
-                    }
-                }
-            }
-        }
-    }
-}
-
-@Composable
-fun PanditHomeCard(
-    pandit: PanditProfile,
-    onBookClick: () -> Unit,
-    onClick: () -> Unit
-) {
-    Surface(
-        onClick = onClick,
-        shape = RoundedCornerShape(22.dp),
-        color = VedikaSurface,
-        border = BorderStroke(1.2.dp, VedikaCardBorder),
-        modifier = Modifier
-            .width(240.dp)
-            .shadow(4.dp, RoundedCornerShape(22.dp), spotColor = Color(0x10000000))
-    ) {
-        Column(modifier = Modifier.padding(16.dp)) {
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                Box(
-                    modifier = Modifier
-                        .size(62.dp)
-                        .clip(CircleShape)
-                ) {
-                    VedikaPanditImage(
-                        pandit = pandit,
-                        modifier = Modifier.fillMaxSize(),
-                        cornerRadius = 31.dp
-                    )
-                }
-                Spacer(modifier = Modifier.width(12.dp))
-                Column(modifier = Modifier.weight(1f)) {
-                    Row(verticalAlignment = Alignment.CenterVertically) {
-                        Text(
-                            text = pandit.name,
-                            style = MaterialTheme.typography.titleMedium.copy(
-                                fontWeight = FontWeight.Bold,
-                                color = VedikaTextDark,
-                                fontSize = 16.sp
-                            ),
-                            maxLines = 1,
-                            overflow = TextOverflow.Ellipsis
-                        )
-                        Spacer(modifier = Modifier.width(4.dp))
-                        Icon(
-                            imageVector = Icons.Default.Verified,
-                            contentDescription = "Verified",
-                            tint = VedikaOrange,
-                            modifier = Modifier.size(16.dp)
-                        )
-                    }
-                    Text(
-                        text = "${pandit.experienceYears}+ Yrs Exp",
-                        style = MaterialTheme.typography.bodySmall.copy(
-                            color = VedikaTextMedium,
-                            fontSize = 12.sp
-                        )
-                    )
-                    Row(verticalAlignment = Alignment.CenterVertically) {
-                        Icon(
-                            imageVector = Icons.Default.Star,
-                            contentDescription = null,
-                            tint = VedikaAmber,
-                            modifier = Modifier.size(14.dp)
-                        )
-                        Spacer(modifier = Modifier.width(2.dp))
-                        Text(
-                            text = "${pandit.rating} (${pandit.reviewCount})",
-                            style = MaterialTheme.typography.labelSmall.copy(
-                                fontWeight = FontWeight.Bold,
-                                color = VedikaTextDark,
-                                fontSize = 12.sp
-                            )
-                        )
-                    }
-                }
             }
 
-            Spacer(modifier = Modifier.height(12.dp))
-            Text(
-                text = pandit.specializations.joinToString(" • "),
-                style = MaterialTheme.typography.bodySmall.copy(
-                    color = VedikaTextMedium,
-                    fontSize = 12.sp
-                ),
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis
-            )
-
-            Spacer(modifier = Modifier.height(12.dp))
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Column {
-                    Text(
-                        text = "₹ ${pandit.basePrice}",
-                        style = MaterialTheme.typography.titleMedium.copy(
-                            fontWeight = FontWeight.ExtraBold,
-                            color = VedikaOrangeDark,
-                            fontSize = 17.sp
-                        )
-                    )
-                    Text(
-                        text = "Dakshina",
-                        style = MaterialTheme.typography.labelSmall.copy(
-                            color = VedikaTextMuted,
-                            fontSize = 11.sp
-                        )
-                    )
-                }
-                Button(
-                    onClick = onBookClick,
-                    shape = RoundedCornerShape(12.dp),
-                    colors = ButtonDefaults.buttonColors(containerColor = VedikaOrange),
-                    contentPadding = PaddingValues(horizontal = 16.dp, vertical = 6.dp),
-                    modifier = Modifier.height(38.dp)
-                ) {
-                    Text("Select", fontWeight = FontWeight.Bold, fontSize = 13.sp)
-                }
-            }
-        }
-    }
-}
-
-@Composable
-fun HomeFestivalCard(
-    festival: FestivalEvent,
-    onBookClick: () -> Unit
-) {
-    Surface(
-        onClick = onBookClick,
-        shape = RoundedCornerShape(20.dp),
-        color = VedikaSurface,
-        border = BorderStroke(1.dp, VedikaCardBorder),
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 20.dp)
-            .shadow(3.dp, RoundedCornerShape(20.dp), spotColor = Color(0x0C000000))
-    ) {
-        Row(
-            modifier = Modifier.padding(16.dp),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
+            // Right chevron button
             Surface(
-                shape = RoundedCornerShape(14.dp),
-                color = VedikaSaffronLight,
-                modifier = Modifier.size(54.dp)
+                shape = CircleShape,
+                color = Color(0xFFFFF2E6),
+                modifier = Modifier.size(32.dp)
             ) {
                 Box(contentAlignment = Alignment.Center) {
                     Icon(
-                        imageVector = Icons.Default.Celebration,
-                        contentDescription = null,
+                        imageVector = Icons.AutoMirrored.Filled.ArrowForward,
+                        contentDescription = "Open",
                         tint = VedikaOrangeDark,
-                        modifier = Modifier.size(26.dp)
+                        modifier = Modifier.size(16.dp)
                     )
                 }
-            }
-            Spacer(modifier = Modifier.width(14.dp))
-            Column(modifier = Modifier.weight(1f)) {
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    Text(
-                        text = festival.name,
-                        style = MaterialTheme.typography.titleMedium.copy(
-                            fontWeight = FontWeight.Bold,
-                            color = VedikaTextDark,
-                            fontSize = 16.sp
-                        )
-                    )
-                    Spacer(modifier = Modifier.width(8.dp))
-                    Surface(
-                        shape = RoundedCornerShape(8.dp),
-                        color = VedikaAmber
-                    ) {
-                        Text(
-                            text = "In ${festival.daysRemaining}d",
-                            color = Color.White,
-                            fontWeight = FontWeight.Bold,
-                            fontSize = 10.sp,
-                            modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp)
-                        )
-                    }
-                }
-                Spacer(modifier = Modifier.height(2.dp))
-                Text(
-                    text = "${festival.date} • ${festival.tithi}",
-                    style = MaterialTheme.typography.bodySmall.copy(
-                        color = VedikaTextMedium,
-                        fontSize = 12.sp
-                    )
-                )
-            }
-            Button(
-                onClick = onBookClick,
-                shape = RoundedCornerShape(12.dp),
-                colors = ButtonDefaults.buttonColors(containerColor = VedikaOrange),
-                contentPadding = PaddingValues(horizontal = 14.dp, vertical = 6.dp),
-                modifier = Modifier.height(36.dp)
-            ) {
-                Text("Book", fontWeight = FontWeight.Bold, fontSize = 13.sp)
             }
         }
     }

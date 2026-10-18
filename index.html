@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VEDIKA — Authentic Vedic & Spiritual Services</title>
+  <meta name="description" content="India's Premium Digital Vedic, Spiritual & Religious Services Marketplace — Book Authentic Puja, Verified Pandits, Temple Darshan & Today's Panchang.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/index.css">
+</head>
+<body>
+
+  <!-- Top Controller Bar with Screen Switcher & View Mode Toggle -->
+  <header class="top-controller-bar">
+    <div class="brand-badge">
+      <div class="brand-flame-icon">🔥</div>
+      <div>
+        <h1 class="brand-title">VEDIKA</h1>
+        <p class="brand-subtitle">8-Screen Interactive Mobile Showcase</p>
+      </div>
+    </div>
+
+    <div class="screen-switch-tabs">
+      <button class="screen-tab-btn active" data-screen="screen-1">1. Welcome</button>
+      <button class="screen-tab-btn" data-screen="screen-2">2. Home</button>
+      <button class="screen-tab-btn" data-screen="screen-3">3. Puja Services</button>
+      <button class="screen-tab-btn" data-screen="screen-4">4. Temple Darshan</button>
+      <button class="screen-tab-btn" data-screen="screen-5">5. Book Puja Flow</button>
+      <button class="screen-tab-btn" data-screen="screen-6">6. Panchang</button>
+      <button class="screen-tab-btn" data-screen="screen-7">7. Our Pandit Ji</button>
+      <button class="screen-tab-btn" data-screen="screen-8">8. Profile</button>
+    </div>
+
+    <div class="view-mode-toggle">
+      <button id="view-mobile-btn" class="view-btn active">📱 Phone Simulator</button>
+      <button id="view-gallery-btn" class="view-btn">🖼️ All 8 Screens</button>
+    </div>
+  </header>
+
+  <!-- Interactive Phone Simulator View -->
+  <main id="phone-simulator-wrapper" class="main-wrapper">
+    <div class="smartphone-frame">
+
+      <!-- Status Bar -->
+      <div class="status-bar">
+        <span class="status-time">9:41</span>
+        <div class="status-icons">
+          <span>📶</span>
+          <span>⚡</span>
+          <span>🔋</span>
+        </div>
+      </div>
+
+      <!-- Main Scrollable Screen Area -->
+      <div id="main-scroll-area" class="screen-content-area">
+
+        <!-- ============================================== -->
+        <!-- SCREEN 1: WELCOME & ONBOARDING                 -->
+        <!-- ============================================== -->
+        <section id="screen-1" class="vedika-screen onboarding-screen active">
+          <div class="onboarding-hero">
+            <svg viewBox="0 0 395 380" preserveAspectRatio="none">
+              <defs>
+                <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stop-color="#FFB74D" />
+                  <stop offset="30%" stop-color="#FFE0B2" />
+                  <stop offset="65%" stop-color="#FFF3E0" />
+                  <stop offset="100%" stop-color="#FBF8F2" />
+                </linearGradient>
+                <radialGradient id="sunGlow" cx="50%" cy="35%" r="45%">
+                  <stop offset="0%" stop-color="#FFFDE7" />
+                  <stop offset="40%" stop-color="#FFE082" />
+                  <stop offset="100%" stop-color="rgba(255,167,38,0)" />
+                </radialGradient>
+                <linearGradient id="spireGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stop-color="#D7A76E" />
+                  <stop offset="50%" stop-color="#BD8650" />
+                  <stop offset="100%" stop-color="#8D5B2F" />
+                </linearGradient>
+              </defs>
+              <rect width="100%" height="100%" fill="url(#skyGrad)" />
+              <circle cx="197" cy="130" r="140" fill="url(#sunGlow)" />
+              <!-- Temple Spire Main -->
+              <polygon points="197,35 220,110 245,170 270,220 125,220 150,170 175,110" fill="url(#spireGrad)" />
+              <!-- Saffron Flag -->
+              <line x1="197" y1="20" x2="197" y2="40" stroke="#BF360C" stroke-width="2.5" />
+              <polygon points="197,20 226,27 197,35" fill="#FF5722" />
+              <!-- Sub Spires -->
+              <polygon points="105,80 135,160 150,220 65,220 80,150" fill="#C9945F" />
+              <polygon points="290,80 330,150 345,220 260,220 275,160" fill="#C9945F" />
+              <!-- Temple Mandapa Base -->
+              <rect x="55" y="220" width="285" height="40" fill="#A7723E" />
+              <!-- Ghat Steps -->
+              <rect x="35" y="260" width="325" height="15" fill="#DEB887" />
+              <rect x="20" y="275" width="355" height="15" fill="#D2A374" />
+              <rect x="0" y="290" width="395" height="20" fill="#C59463" />
+              <!-- Devotee in Namaste Sitting at riverside -->
+              <ellipse cx="80" cy="275" rx="14" ry="16" fill="#5D4037" />
+              <circle cx="80" cy="250" r="8" fill="#8D6E63" />
+              <!-- Water Shimmer -->
+              <rect x="0" y="310" width="395" height="70" fill="url(#skyGrad)" opacity="0.75" />
+            </svg>
+          </div>
+
+          <div class="onboarding-content">
+            <!-- Triple Flame Lotus Emblem -->
+            <svg class="emblem-flame-lotus" viewBox="0 0 100 100">
+              <defs>
+                <radialGradient id="emblemGlow" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="#FFE082" />
+                  <stop offset="70%" stop-color="#FFA726" />
+                  <stop offset="100%" stop-color="rgba(255,107,0,0)" />
+                </radialGradient>
+                <linearGradient id="centerFlameGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stop-color="#FFF9C4" />
+                  <stop offset="50%" stop-color="#FFB300" />
+                  <stop offset="100%" stop-color="#E65100" />
+                </linearGradient>
+              </defs>
+              <circle cx="50" cy="50" r="48" fill="url(#emblemGlow)" />
+              <!-- Center Flame -->
+              <path d="M50,10 C40,32 38,58 50,88 C62,58 60,32 50,10 Z" fill="url(#centerFlameGrad)" />
+              <!-- Left Flame -->
+              <path d="M50,88 C28,72 16,48 30,26 C26,50 40,70 50,88 Z" fill="#FF7043" />
+              <!-- Right Flame -->
+              <path d="M50,88 C72,72 84,48 70,26 C74,50 60,70 50,88 Z" fill="#FF7043" />
+              <circle cx="50" cy="58" r="7" fill="#FFFDE7" />
+            </svg>
+
+            <h2 class="brand-main-title">VEDIKA</h2>
+            <p class="brand-tagline">Bringing You Closer<br>to Your Faith</p>
+            <div class="sacred-om">ॐ</div>
+
+            <div class="onboarding-features-row">
+              <div class="feature-capsule">
+                <span class="feat-icon">🪔</span>
+                <span class="feat-text">Authentic<br>Puja Services</span>
+              </div>
+              <div class="feature-capsule">
+                <span class="feat-icon">🧘‍♂️</span>
+                <span class="feat-text">Verified<br>Pandits</span>
+              </div>
+              <div class="feature-capsule">
+                <span class="feat-icon">🛕</span>
+                <span class="feat-text">Trusted<br>Temples</span>
+              </div>
+            </div>
+
+            <button id="btn-get-started" class="vedika-btn-gradient">
+              Get Started <span>→</span>
+            </button>
+            <button id="btn-explore-guest" class="link-btn">
+              Explore as Guest
+            </button>
+          </div>
+        </section>
+
+        <!-- ============================================== -->
+        <!-- SCREEN 2: HOME                                 -->
+        <!-- ============================================== -->
+        <section id="screen-2" class="vedika-screen">
+          <div class="home-header">
+            <div class="location-pill">
+              <span>📍</span> Jamshedpur, Jharkhand <span>⌵</span>
+            </div>
+            <div class="bell-icon-btn">
+              <span>🔔</span>
+              <div class="unread-dot"></div>
+            </div>
+          </div>
+
+          <div class="home-greeting-row">
+            <div>
+              <h2 class="greeting-headline">Good Morning<br>Mohit 👋</h2>
+              <p class="greeting-sub">May your day be filled with<br>peace and positivity ✨</p>
+            </div>
+            <div id="home-profile-avatar" class="avatar-circle">
+              <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=300&q=80" alt="Mohit Raj" />
+            </div>
+          </div>
+
+          <div class="home-search-bar">
+            <span>🔍</span>
+            <span class="search-placeholder">Search puja, temple, pandit...</span>
+            <span>🎙️</span>
+            <span>🎛️</span>
+          </div>
+
+          <div class="promo-banner-card">
+            <div class="promo-banner-left">
+              <h3 class="promo-banner-title">Book Authentic<br>Puja Services</h3>
+              <p class="promo-banner-sub">From trusted pandits, right at your home or at sacred temples.</p>
+              <button id="btn-promo-book" class="promo-banner-btn">Book Now →</button>
+            </div>
+            <div class="promo-banner-right">
+              <div class="promo-banner-art">
+                <svg viewBox="0 0 140 120">
+                  <rect width="100%" height="100%" fill="#FFCC80" rx="14" />
+                  <circle cx="95" cy="40" r="30" fill="#FFFDE7" />
+                  <polygon points="70,15 88,60 106,105 34,105 52,60" fill="#E65100" />
+                  <line x1="70" y1="5" x2="70" y2="15" stroke="#BF360C" stroke-width="2" />
+                  <polygon points="70,5 90,10 70,15" fill="#FF5722" />
+                  <polygon points="25,45 38,80 48,105 2,105 12,80" fill="#F57C00" />
+                  <polygon points="115,45 128,80 138,105 92,105 102,80" fill="#F57C00" />
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <div class="carousel-dots">
+            <div class="carousel-dot active"></div>
+            <div class="carousel-dot"></div>
+            <div class="carousel-dot"></div>
+            <div class="carousel-dot"></div>
+          </div>
+
+          <div class="quick-actions-grid">
+            <div id="act-puja-booking" class="quick-action-item">
+              <div class="action-icon-box">🪷</div>
+              <span class="action-icon-label">Puja Booking</span>
+            </div>
+            <div id="act-pandit-ji" class="quick-action-item">
+              <div class="action-icon-box">🧘‍♂️</div>
+              <span class="action-icon-label">Pandit Ji</span>
+            </div>
+            <div id="act-temple-darshan" class="quick-action-item">
+              <div class="action-icon-box">🛕</div>
+              <span class="action-icon-label">Temple Darshan</span>
+            </div>
+            <div id="act-panchang" class="quick-action-item">
+              <div class="action-icon-box">📅</div>
+              <span class="action-icon-label">Panchang</span>
+            </div>
+            <div class="quick-action-item">
+              <div class="action-icon-box">🕉️</div>
+              <span class="action-icon-label">Mantra Jaap</span>
+            </div>
+            <div class="quick-action-item">
+              <div class="action-icon-box">📖</div>
+              <span class="action-icon-label">Spiritual Articles</span>
+            </div>
+            <div class="quick-action-item">
+              <div class="action-icon-box">✨</div>
+              <span class="action-icon-label">Festivals</span>
+            </div>
+            <div class="quick-action-item">
+              <div class="action-icon-box">❤️</div>
+              <span class="action-icon-label">Donate</span>
+            </div>
+          </div>
+
+          <div class="section-header-row">
+            <span class="section-title">Popular Pujas</span>
+            <span class="section-view-all">View All →</span>
+          </div>
+
+          <div id="popular-puja-item" class="popular-puja-card">
+            <div class="puja-thumb">
+              <svg viewBox="0 0 100 100">
+                <rect width="100" height="100" fill="#FFF3E0" />
+                <circle cx="50" cy="50" r="38" fill="#FFE082" />
+                <!-- Kalash Diya Deity Symbol -->
+                <ellipse cx="50" cy="62" rx="22" ry="18" fill="#FFB300" />
+                <circle cx="50" cy="42" r="14" fill="#8D6E63" />
+                <polygon points="50,16 42,32 58,32" fill="#E65100" />
+              </svg>
+            </div>
+            <div class="puja-info">
+              <h4 class="puja-title">Satyanarayan Puja</h4>
+              <div class="rating-line">
+                <span style="color:#F59E0B">★</span>
+                <span>4.9 (2.1k bookings)</span>
+              </div>
+              <p class="puja-desc">For peace, prosperity and happiness</p>
+              <div class="puja-price">₹1,501</div>
+            </div>
+            <div class="puja-chevron">›</div>
+          </div>
+
+          <div class="popular-puja-card">
+            <div class="puja-thumb">
+              <svg viewBox="0 0 100 100">
+                <rect width="100" height="100" fill="#FFF3E0" />
+                <circle cx="50" cy="50" r="38" fill="#FFCC80" />
+                <polygon points="50,22 75,44 25,44" fill="#D84315" />
+                <rect x="34" y="44" width="32" height="34" fill="#BF360C" />
+              </svg>
+            </div>
+            <div class="puja-info">
+              <h4 class="puja-title">Griha Pravesh Puja</h4>
+              <div class="rating-line">
+                <span style="color:#F59E0B">★</span>
+                <span>4.9 (1.2k bookings)</span>
+              </div>
+              <p class="puja-desc">For positive energy in your new home</p>
+              <div class="puja-price">₹2,501</div>
+            </div>
+            <div class="puja-chevron">›</div>
+          </div>
+        </section>
+
+        <!-- ============================================== -->
+        <!-- SCREEN 3: PUJA SERVICES                        -->
+        <!-- ============================================== -->
+        <section id="screen-3" class="vedika-screen">
+          <div class="child-screen-top-bar">
+            <button class="back-btn js-back-home">‹</button>
+            <h2 class="child-title">Puja Services</h2>
+            <span>🔍</span>
+          </div>
+          <div class="child-subtitle-row">
+            Book trusted pandits for authentic rituals
+          </div>
+
+          <div class="filter-pills-row">
+            <div class="filter-pill active">All</div>
+            <div class="filter-pill">Griha Puja</div>
+            <div class="filter-pill">Sanskar</div>
+            <div class="filter-pill">Temple Puja</div>
+            <div class="filter-pill">Special</div>
+          </div>
+
+          <div class="popular-puja-card">
+            <div class="puja-thumb">
+              <svg viewBox="0 0 100 100"><rect width="100" height="100" fill="#FFF3E0" /><circle cx="50" cy="50" r="36" fill="#FFE082" /><ellipse cx="50" cy="62" rx="20" ry="16" fill="#FF9800" /><polygon points="50,18 42,32 58,32" fill="#E65100" /></svg>
+            </div>
+            <div class="puja-info">
+              <h4 class="puja-title">Griha Pravesh Puja</h4>
+              <div class="rating-line"><span style="color:#F59E0B">★</span> 4.9 (1.2k bookings)</div>
+              <p class="puja-desc">For positive energy in your new home</p>
+              <div class="puja-price">₹2,501</div>
+            </div>
+            <div class="puja-chevron">›</div>
+          </div>
+
+          <div class="popular-puja-card">
+            <div class="puja-thumb">
+              <svg viewBox="0 0 100 100"><rect width="100" height="100" fill="#FFF3E0" /><circle cx="50" cy="50" r="36" fill="#FFCC80" /><polygon points="50,22 75,44 25,44" fill="#D84315" /><rect x="34" y="44" width="32" height="34" fill="#BF360C" /></svg>
+            </div>
+            <div class="puja-info">
+              <h4 class="puja-title">Satyanarayan Puja</h4>
+              <div class="rating-line"><span style="color:#F59E0B">★</span> 4.8 (3.5k bookings)</div>
+              <p class="puja-desc">For peace, prosperity and happiness</p>
+              <div class="puja-price">₹1,501</div>
+            </div>
+            <div class="puja-chevron">›</div>
+          </div>
+
+          <div class="popular-puja-card">
+            <div class="puja-thumb">
+              <svg viewBox="0 0 100 100"><rect width="100" height="100" fill="#E8EAF6" /><circle cx="50" cy="50" r="36" fill="#C5CAE9" /><rect x="42" y="30" width="16" height="34" rx="8" fill="#303F9F" /><ellipse cx="50" cy="64" rx="28" ry="8" fill="#1A237E" /></svg>
+            </div>
+            <div class="puja-info">
+              <h4 class="puja-title">Maha Mrityunjay Jaap</h4>
+              <div class="rating-line"><span style="color:#F59E0B">★</span> 4.9 (1.8k bookings)</div>
+              <p class="puja-desc">For health and protection</p>
+              <div class="puja-price">₹1,100</div>
+            </div>
+            <div class="puja-chevron">›</div>
+          </div>
+
+          <div class="popular-puja-card">
+            <div class="puja-thumb">
+              <svg viewBox="0 0 100 100"><rect width="100" height="100" fill="#EDE7F6" /><circle cx="50" cy="50" r="36" fill="#D1C4E9" /><circle cx="50" cy="50" r="14" fill="#FFB300" /><circle cx="28" cy="30" r="6" fill="#E53935" /><circle cx="72" cy="30" r="6" fill="#1E88E5" /></svg>
+            </div>
+            <div class="puja-info">
+              <h4 class="puja-title">Navgrah Shanti Puja</h4>
+              <div class="rating-line"><span style="color:#F59E0B">★</span> 4.7 (1.2k bookings)</div>
+              <p class="puja-desc">For planetary peace</p>
+              <div class="puja-price">₹2,101</div>
+            </div>
+            <div class="puja-chevron">›</div>
+          </div>
+
+          <div class="popular-puja-card">
+            <div class="puja-thumb">
+              <svg viewBox="0 0 100 100"><rect width="100" height="100" fill="#ECEFF1" /><circle cx="50" cy="50" r="36" fill="#CFD8DC" /><path d="M50,22 C32,32 36,60 50,75 C64,60 68,32 50,22 Z" fill="#37474F" /><circle cx="50" cy="38" r="4" fill="#FFD54F" /></svg>
+            </div>
+            <div class="puja-info">
+              <h4 class="puja-title">Kaal Sarp Dosh Puja</h4>
+              <div class="rating-line"><span style="color:#F59E0B">★</span> 4.8 (1.6k bookings)</div>
+              <p class="puja-desc">To reduce negative effects</p>
+              <div class="puja-price">₹3,501</div>
+            </div>
+            <div class="puja-chevron">›</div>
+          </div>
+        </section>
+
+        <!-- ============================================== -->
+        <!-- SCREEN 4: TEMPLE DARSHAN                       -->
+        <!-- ============================================== -->
+        <section id="screen-4" class="vedika-screen">
+          <div class="temple-hero-box">
+            <div class="floating-nav-buttons">
+              <button class="floating-round-btn js-back-home">‹</button>
+              <button class="floating-round-btn heart-fav-btn">❤️</button>
+            </div>
+            <svg viewBox="0 0 395 250" preserveAspectRatio="none">
+              <rect width="100%" height="100%" fill="#FFE0B2" />
+              <polygon points="197,20 220,90 245,160 270,220 125,220 150,160 175,90" fill="#BF360C" />
+              <line x1="197" y1="10" x2="197" y2="20" stroke="#BF360C" stroke-width="2" />
+              <polygon points="197,10 216,14 197,18" fill="#FF5722" />
+              <polygon points="105,70 135,140 150,220 65,220 80,140" fill="#D84315" />
+              <polygon points="290,70 330,140 345,220 260,220 275,140" fill="#D84315" />
+              <rect x="0" y="220" width="395" height="30" fill="#8D6E63" />
+            </svg>
+          </div>
+
+          <div class="temple-details-body">
+            <div>
+              <h3 class="temple-name-title">Baidyanath Dham</h3>
+              <div class="rating-line">
+                <span style="color:#F59E0B">★</span>
+                <span>4.8 (2.5k reviews)</span>
+              </div>
+              <div style="font-size: 13px; color: var(--color-text-medium); margin-top: 2px;">
+                📍 Deoghar, Jharkhand
+              </div>
+            </div>
+
+            <div class="chips-row">
+              <div class="chip-item">📖 History</div>
+              <div class="chip-item">🖼️ Gallery</div>
+              <div class="chip-item">⏰ Timings</div>
+            </div>
+
+            <div>
+              <h4 style="font-size: 15px; font-weight: 800; margin-bottom: 4px;">About</h4>
+              <p class="about-text">
+                One of the 12 Jyotirlingas of Lord Shiva, Baidyanath Dham is a sacred destination visited by millions of devotees every year.
+                <span class="read-more-link">Read More ›</span>
+              </p>
+            </div>
+
+            <div>
+              <h4 style="font-size: 15px; font-weight: 800; margin-bottom: 8px;">Darshan Booking</h4>
+              <div class="darshan-radio-group">
+                <div class="darshan-radio-card active" data-type="General">
+                  <div class="radio-left">
+                    <div class="radio-circle"><div class="radio-inner-dot"></div></div>
+                    <span class="radio-label">General Darshan</span>
+                  </div>
+                  <span class="radio-price free">Free</span>
+                </div>
+
+                <div class="darshan-radio-card" data-type="Special">
+                  <div class="radio-left">
+                    <div class="radio-circle"><div class="radio-inner-dot"></div></div>
+                    <span class="radio-label">Special Darshan</span>
+                  </div>
+                  <span class="radio-price">₹251</span>
+                </div>
+
+                <div class="darshan-radio-card" data-type="VIP">
+                  <div class="radio-left">
+                    <div class="radio-circle"><div class="radio-inner-dot"></div></div>
+                    <span class="radio-label">VIP Darshan</span>
+                  </div>
+                  <span class="radio-price">₹501</span>
+                </div>
+              </div>
+            </div>
+
+            <button id="btn-book-darshan" class="vedika-btn-gradient">
+              Book Darshan <span>→</span>
+            </button>
+
+            <div>
+              <h4 style="font-size: 15px; font-weight: 800; margin-bottom: 8px;">Nearby Services</h4>
+              <div class="nearby-services-grid">
+                <div class="nearby-item">
+                  <div class="nearby-icon-box">🏨</div>
+                  <span class="nearby-label">Hotel</span>
+                </div>
+                <div class="nearby-item">
+                  <div class="nearby-icon-box">🍴</div>
+                  <span class="nearby-label">Food</span>
+                </div>
+                <div class="nearby-item">
+                  <div class="nearby-icon-box">🚗</div>
+                  <span class="nearby-label">Transport</span>
+                </div>
+                <div class="nearby-item">
+                  <div class="nearby-icon-box">🚩</div>
+                  <span class="nearby-label">Guide</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============================================== -->
+        <!-- SCREEN 5: BOOK PUJA FLOW                       -->
+        <!-- ============================================== -->
+        <section id="screen-5" class="vedika-screen">
+          <div class="child-screen-top-bar">
+            <button class="back-btn js-back-home">‹</button>
+            <h2 class="child-title">Book Puja</h2>
+          </div>
+
+          <div class="stepper-header-box">
+            <div class="stepper-line"></div>
+            <div class="stepper-step">
+              <div class="step-node active">★</div>
+              <span class="step-label active">Puja</span>
+            </div>
+            <div class="stepper-step">
+              <div class="step-node">2</div>
+              <span class="step-label">Details</span>
+            </div>
+            <div class="stepper-step">
+              <div class="step-node">3</div>
+              <span class="step-label">Pandit</span>
+            </div>
+            <div class="stepper-step">
+              <div class="step-node">4</div>
+              <span class="step-label">Payment</span>
+            </div>
+          </div>
+
+          <div style="padding: 0 18px 4px 18px; font-size: 14px; font-weight: 800;">
+            Selected Puja
+          </div>
+
+          <div class="popular-puja-card" style="margin-bottom: 16px;">
+            <div class="puja-thumb">
+              <svg viewBox="0 0 100 100"><rect width="100" height="100" fill="#FFF3E0" /><circle cx="50" cy="50" r="38" fill="#FFE082" /><ellipse cx="50" cy="62" rx="22" ry="18" fill="#FFB300" /><circle cx="50" cy="42" r="14" fill="#8D6E63" /><polygon points="50,16 42,32 58,32" fill="#E65100" /></svg>
+            </div>
+            <div class="puja-info">
+              <h4 class="puja-title">Satyanarayan Puja</h4>
+              <p class="puja-desc">For peace, prosperity and happiness</p>
+              <div class="puja-price">₹1,501</div>
+            </div>
+          </div>
+
+          <div style="padding: 0 18px 8px 18px; font-size: 14px; font-weight: 800;">
+            Select Date
+          </div>
+
+          <div class="calendar-card">
+            <div class="calendar-month-row">
+              <button class="cal-nav-btn">‹</button>
+              <span>October 2026</span>
+              <button class="cal-nav-btn">›</button>
+            </div>
+
+            <div class="calendar-days-header">
+              <span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span>
+            </div>
+
+            <div class="calendar-grid">
+              <div class="cal-day-cell empty"></div>
+              <div class="cal-day-cell empty"></div>
+              <div class="cal-day-cell empty"></div>
+              <div class="cal-day-cell empty"></div>
+              <div class="cal-day-cell">1</div>
+              <div class="cal-day-cell">2</div>
+              <div class="cal-day-cell">3</div>
+
+              <div class="cal-day-cell">4</div>
+              <div class="cal-day-cell">5</div>
+              <div class="cal-day-cell">6</div>
+              <div class="cal-day-cell">7</div>
+              <div class="cal-day-cell">8</div>
+              <div class="cal-day-cell">9</div>
+              <div class="cal-day-cell">10</div>
+
+              <div class="cal-day-cell">11</div>
+              <div class="cal-day-cell">12</div>
+              <div class="cal-day-cell">13</div>
+              <div class="cal-day-cell">14</div>
+              <div class="cal-day-cell">15</div>
+              <div class="cal-day-cell">16</div>
+              <div class="cal-day-cell">17</div>
+
+              <div class="cal-day-cell selected">18</div>
+              <div class="cal-day-cell">19</div>
+              <div class="cal-day-cell">20</div>
+              <div class="cal-day-cell">21</div>
+              <div class="cal-day-cell">22</div>
+              <div class="cal-day-cell">23</div>
+              <div class="cal-day-cell">24</div>
+
+              <div class="cal-day-cell">25</div>
+              <div class="cal-day-cell">26</div>
+              <div class="cal-day-cell">27</div>
+              <div class="cal-day-cell">28</div>
+              <div class="cal-day-cell">29</div>
+              <div class="cal-day-cell">30</div>
+              <div class="cal-day-cell">31</div>
+            </div>
+          </div>
+
+          <div style="padding: 0 18px 8px 18px; font-size: 14px; font-weight: 800;">
+            Preferred Time
+          </div>
+
+          <div class="time-slots-grid">
+            <div class="time-slot-btn">6:00 AM</div>
+            <div class="time-slot-btn selected">8:00 AM</div>
+            <div class="time-slot-btn">10:00 AM</div>
+            <div class="time-slot-btn">12:00 PM</div>
+            <div class="time-slot-btn">4:00 PM</div>
+            <div class="time-slot-btn">6:00 PM</div>
+          </div>
+
+          <div style="padding: 0 18px 24px 18px;">
+            <button id="btn-next-booking" class="vedika-btn-gradient">
+              Next <span>→</span>
+            </button>
+          </div>
+        </section>
+
+        <!-- ============================================== -->
+        <!-- SCREEN 6: TODAY'S PANCHANG                     -->
+        <!-- ============================================== -->
+        <section id="screen-6" class="vedika-screen">
+          <div class="child-screen-top-bar">
+            <button class="back-btn js-back-home">‹</button>
+            <h2 class="child-title">Today's Panchang</h2>
+            <span>📤</span>
+          </div>
+
+          <div class="panchang-hero-banner">
+            <div class="panchang-date-overlay">
+              <div class="panchang-date-text">18 October 2026</div>
+              <div class="panchang-day-text">Sunday</div>
+            </div>
+            <svg viewBox="0 0 360 140" preserveAspectRatio="none">
+              <rect width="100%" height="100%" fill="#FFE0B2" />
+              <circle cx="280" cy="50" r="36" fill="#FFF9C4" />
+              <polygon points="320,30 335,70 345,120 295,120 305,70" fill="#BF360C" />
+              <line x1="320" y1="20" x2="320" y2="30" stroke="#BF360C" stroke-width="2" />
+              <polygon points="320,20 336,25 320,30" fill="#FF5722" />
+              <rect x="0" y="115" width="360" height="25" fill="#C59463" />
+            </svg>
+          </div>
+
+          <div class="panchang-coords-grid">
+            <div class="coord-cell">
+              <div class="coord-circle-icon">☀️</div>
+              <span class="coord-label">Tithi</span>
+              <span class="coord-val">Ekadashi</span>
+              <span class="coord-sub">(till 11:32 AM)</span>
+            </div>
+            <div class="coord-cell">
+              <div class="coord-circle-icon">🌸</div>
+              <span class="coord-label">Nakshatra</span>
+              <span class="coord-val">Rohini</span>
+              <span class="coord-sub">(till 02:15 PM)</span>
+            </div>
+            <div class="coord-cell">
+              <div class="coord-circle-icon">🕉️</div>
+              <span class="coord-label">Yoga</span>
+              <span class="coord-val">Siddhi</span>
+              <span class="coord-sub">(till 10:45 AM)</span>
+            </div>
+            <div class="coord-cell">
+              <div class="coord-circle-icon">🌙</div>
+              <span class="coord-label">Karana</span>
+              <span class="coord-val">Bava</span>
+              <span class="coord-sub">(till 11:32 AM)</span>
+            </div>
+          </div>
+
+          <div style="padding: 0 18px 6px 18px; font-size: 14.5px; font-weight: 800;">
+            🔅 Auspicious Timings
+          </div>
+
+          <div class="timings-card">
+            <div class="timing-item">
+              <span class="timing-name">🕒 Brahma Muhurta</span>
+              <span class="timing-val">04:52 AM - 05:40 AM</span>
+            </div>
+            <div class="timing-item highlight">
+              <span class="timing-name">🕒 Abhijit Muhurta</span>
+              <span class="timing-val">11:48 AM - 12:36 PM</span>
+            </div>
+            <div class="timing-item">
+              <span class="timing-name">🕒 Vijay Muhurta</span>
+              <span class="timing-val">02:18 PM - 03:06 PM</span>
+            </div>
+            <div class="timing-item">
+              <span class="timing-name">🕒 Godhuli Muhurta</span>
+              <span class="timing-val">05:42 PM - 06:18 PM</span>
+            </div>
+          </div>
+
+          <div style="padding: 0 18px 6px 18px; font-size: 14.5px; font-weight: 800;">
+            🪔 Today's Thought
+          </div>
+
+          <div class="thought-card">
+            <div class="thought-quote">
+              “Faith is the bridge between where you are and where you want to be.”
+            </div>
+            <div class="thought-diya-art">
+              <svg viewBox="0 0 100 100">
+                <circle cx="50" cy="45" r="40" fill="#FFF3E0" />
+                <path d="M22,65 Q50,90 78,65 L84,60 L16,60 Z" fill="#D4AF37" />
+                <path d="M50,15 C38,35 40,55 50,60 C60,55 62,35 50,15 Z" fill="#FF5722" />
+                <circle cx="50" cy="46" r="6" fill="#FFF9C4" />
+              </svg>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============================================== -->
+        <!-- SCREEN 7: OUR PANDIT JI                        -->
+        <!-- ============================================== -->
+        <section id="screen-7" class="vedika-screen">
+          <div class="child-screen-top-bar">
+            <button class="back-btn js-back-home">‹</button>
+            <h2 class="child-title">Our Pandit Ji</h2>
+            <span>🌪️</span>
+          </div>
+
+          <div class="filter-pills-row">
+            <div class="filter-pill active">All</div>
+            <div class="filter-pill">Nearby</div>
+            <div class="filter-pill">Top Rated</div>
+          </div>
+
+          <div class="pandit-card">
+            <div class="pandit-card-top">
+              <div class="pandit-portrait">
+                <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=300&q=80" alt="Pandit Rajesh Mishra" />
+              </div>
+              <div class="pandit-details">
+                <div class="pandit-name-row">
+                  <h4 class="pandit-name">Pandit Rajesh Mishra</h4>
+                  <button class="heart-fav-btn active">❤️</button>
+                </div>
+                <div class="rating-line">
+                  <span style="color:#F59E0B">★</span>
+                  <span>4.9 (320+ pujas)</span>
+                </div>
+                <div class="pandit-spec">Specialist in Griha Puja, Satyanarayan, Sanskar</div>
+                <div class="pandit-langs">Hindi, Sanskrit</div>
+              </div>
+            </div>
+            <button class="pandit-book-btn">Book Now</button>
+          </div>
+
+          <div class="pandit-card">
+            <div class="pandit-card-top">
+              <div class="pandit-portrait">
+                <img src="https://images.unsplash.com/photo-1532375810709-75b1da00537c?auto=format&fit=crop&w=300&q=80" alt="Pandit Anil Shastri" />
+              </div>
+              <div class="pandit-details">
+                <div class="pandit-name-row">
+                  <h4 class="pandit-name">Pandit Anil Shastri</h4>
+                  <button class="heart-fav-btn">🤍</button>
+                </div>
+                <div class="rating-line">
+                  <span style="color:#F59E0B">★</span>
+                  <span>4.8 (210+ pujas)</span>
+                </div>
+                <div class="pandit-spec">Maha Mrityunjay, Navgrah Specialist</div>
+                <div class="pandit-langs">Hindi, Sanskrit, English</div>
+              </div>
+            </div>
+            <button class="pandit-book-btn">Book Now</button>
+          </div>
+
+          <div class="pandit-card">
+            <div class="pandit-card-top">
+              <div class="pandit-portrait">
+                <img src="https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=300&q=80" alt="Pandit Suresh Pathak" />
+              </div>
+              <div class="pandit-details">
+                <div class="pandit-name-row">
+                  <h4 class="pandit-name">Pandit Suresh Pathak</h4>
+                  <button class="heart-fav-btn active">❤️</button>
+                </div>
+                <div class="rating-line">
+                  <span style="color:#F59E0B">★</span>
+                  <span>4.7 (180+ pujas)</span>
+                </div>
+                <div class="pandit-spec">Kaal Sarp Dosh, Shanti Puja Specialist</div>
+                <div class="pandit-langs">Hindi, Bhojpuri</div>
+              </div>
+            </div>
+            <button class="pandit-book-btn">Book Now</button>
+          </div>
+
+          <div class="pandit-card">
+            <div class="pandit-card-top">
+              <div class="pandit-portrait">
+                <img src="https://images.unsplash.com/photo-1609137144813-7d9921338f24?auto=format&fit=crop&w=300&q=80" alt="Pandit Deepak Jha" />
+              </div>
+              <div class="pandit-details">
+                <div class="pandit-name-row">
+                  <h4 class="pandit-name">Pandit Deepak Jha</h4>
+                  <button class="heart-fav-btn">🤍</button>
+                </div>
+                <div class="rating-line">
+                  <span style="color:#F59E0B">★</span>
+                  <span>4.8 (150+ pujas)</span>
+                </div>
+                <div class="pandit-spec">Vastu, Grah Shanti, Pitra Dosh Specialist</div>
+                <div class="pandit-langs">Hindi, Maithili</div>
+              </div>
+            </div>
+            <button class="pandit-book-btn">Book Now</button>
+          </div>
+        </section>
+
+        <!-- ============================================== -->
+        <!-- SCREEN 8: PROFILE                              -->
+        <!-- ============================================== -->
+        <section id="screen-8" class="vedika-screen">
+          <div class="child-screen-top-bar" style="justify-content: flex-end;">
+            <span style="font-size: 20px; cursor: pointer;">⚙️</span>
+          </div>
+
+          <div class="profile-avatar-wrapper">
+            <div class="aura-halo-box">
+              <div class="profile-avatar-circle">
+                <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=400&q=80" alt="Mohit Raj" />
+              </div>
+              <div class="crown-badge">👑</div>
+            </div>
+
+            <div class="user-name-line">
+              <span>Mohit Raj</span>
+              <span class="edit-pencil">✏️</span>
+            </div>
+            <div class="user-email-text">mohitraj@example.com</div>
+          </div>
+
+          <div class="stats-card-3col">
+            <div class="stat-item">
+              <span class="stat-number">12</span>
+              <span class="stat-name">Bookings</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+              <span class="stat-number">5</span>
+              <span class="stat-name">Temples</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+              <span class="stat-number">3</span>
+              <span class="stat-name">Favorites</span>
+            </div>
+          </div>
+
+          <div class="menu-list-card">
+            <div class="menu-row-item">
+              <div class="menu-item-left"><span class="menu-icon">🛍️</span> My Bookings</div>
+              <span class="menu-chevron">›</span>
+            </div>
+            <div class="menu-row-item">
+              <div class="menu-item-left"><span class="menu-icon">🛕</span> My Darshans</div>
+              <span class="menu-chevron">›</span>
+            </div>
+            <div class="menu-row-item">
+              <div class="menu-item-left"><span class="menu-icon">🏷️</span> Saved Temples</div>
+              <span class="menu-chevron">›</span>
+            </div>
+            <div class="menu-row-item">
+              <div class="menu-item-left"><span class="menu-icon">👥</span> My Pandits</div>
+              <span class="menu-chevron">›</span>
+            </div>
+            <div class="menu-row-item">
+              <div class="menu-item-left">
+                <span class="menu-icon">🔔</span> Notifications
+                <span style="width:7px; height:7px; background:#E53935; border-radius:50%; display:inline-block; margin-left:4px;"></span>
+              </div>
+              <span class="menu-chevron">›</span>
+            </div>
+            <div class="menu-row-item">
+              <div class="menu-item-left"><span class="menu-icon">❓</span> Help & Support</div>
+              <span class="menu-chevron">›</span>
+            </div>
+            <div class="menu-row-item">
+              <div class="menu-item-left"><span class="menu-icon">⚙️</span> Settings</div>
+              <span class="menu-chevron">›</span>
+            </div>
+          </div>
+        </section>
+
+      </div>
+
+      <!-- Bottom Navigation Bar (Hidden on Screen 1) -->
+      <nav id="main-bottom-nav" class="bottom-nav-bar" style="display: none;">
+        <div class="bottom-nav-item active" data-tab="Home">
+          <span class="nav-icon">🏠</span>
+          <span class="nav-label">Home</span>
+        </div>
+        <div class="bottom-nav-item" data-tab="Bookings">
+          <span class="nav-icon">📅</span>
+          <span class="nav-label">Bookings</span>
+        </div>
+        <div class="bottom-nav-item" data-tab="Panchang">
+          <span class="nav-icon">🕉️</span>
+          <span class="nav-label">Panchang</span>
+        </div>
+        <div class="bottom-nav-item" data-tab="Explore">
+          <span class="nav-icon">🧭</span>
+          <span class="nav-label">Explore</span>
+        </div>
+        <div class="bottom-nav-item" data-tab="Profile">
+          <span class="nav-icon">👤</span>
+          <span class="nav-label">Profile</span>
+        </div>
+      </nav>
+
+    </div>
+  </main>
+
+  <script type="module" src="/main.js"></script>
+</body>
+</html>

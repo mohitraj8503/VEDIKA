@@ -57,12 +57,12 @@ data class VedikaUiState(
     val selectedCity: String = "Jamshedpur",
     val userName: String = "Mohit Raj",
     val userPhone: String = "+91 98765 43210",
-    val userEmail: String = "mohit@example.com",
+    val userEmail: String = "mohitraj@example.com",
     val isLoggedIn: Boolean = true,
     val isGuest: Boolean = false,
     val selectedCategory: String = "All",
     val searchQuery: String = "",
-    val activeTab: String = "Home", // Bottom nav: Home, Bookings, Explore, Chat, Profile
+    val activeTab: String = "Home", // Bottom nav: Home, Bookings, Panchang, Explore, Profile
     val selectedServiceId: String = "s1",
     val selectedPanditId: String = "p2",
     val bookingDraft: CurrentBookingDraft = CurrentBookingDraft(),
@@ -87,7 +87,15 @@ class VedikaViewModel : ViewModel() {
     val uiState: StateFlow<VedikaUiState> = _uiState.asStateFlow()
 
     fun navigateTo(screen: Screen) {
-        _uiState.update { it.copy(currentScreen = screen) }
+        val updatedTab = when (screen) {
+            Screen.Home -> "Home"
+            Screen.MyBookings -> "Bookings"
+            Screen.PanchangMuhurat -> "Panchang"
+            Screen.Explore -> "Explore"
+            Screen.Profile -> "Profile"
+            else -> _uiState.value.activeTab
+        }
+        _uiState.update { it.copy(currentScreen = screen, activeTab = updatedTab) }
     }
 
     fun selectCity(city: String) {
@@ -99,6 +107,7 @@ class VedikaViewModel : ViewModel() {
             val targetScreen = when (tab) {
                 "Home" -> Screen.Home
                 "Bookings" -> Screen.MyBookings
+                "Panchang" -> Screen.PanchangMuhurat
                 "Explore" -> Screen.Explore
                 "Chat" -> Screen.Chat
                 "Profile" -> Screen.Profile

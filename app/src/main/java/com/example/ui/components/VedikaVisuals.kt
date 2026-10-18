@@ -55,8 +55,14 @@ fun ServiceVisualArt(
                 serviceTitle.contains("Satyanarayan", ignoreCase = true) -> {
                     drawSatyanarayanArt(w, h)
                 }
-                serviceTitle.contains("Rudrabhishek", ignoreCase = true) -> {
+                serviceTitle.contains("Rudrabhishek", ignoreCase = true) || serviceTitle.contains("Mrityunjay", ignoreCase = true) -> {
                     drawRudrabhishekArt(w, h)
+                }
+                serviceTitle.contains("Navgrah", ignoreCase = true) -> {
+                    drawNavgrahArt(w, h)
+                }
+                serviceTitle.contains("Kaal Sarp", ignoreCase = true) -> {
+                    drawKaalSarpArt(w, h)
                 }
                 serviceTitle.contains("Mundan", ignoreCase = true) -> {
                     drawMundanArt(w, h)
@@ -77,7 +83,7 @@ fun ServiceVisualArt(
 
 private fun getServiceBackgroundGradient(title: String): Brush {
     return when {
-        title.contains("Rudrabhishek", ignoreCase = true) -> Brush.verticalGradient(
+        title.contains("Rudrabhishek", ignoreCase = true) || title.contains("Mrityunjay", ignoreCase = true) -> Brush.verticalGradient(
             colors = listOf(Color(0xFF1A237E), Color(0xFF283593), Color(0xFF0D1B2A))
         )
         title.contains("Satyanarayan", ignoreCase = true) -> Brush.verticalGradient(
@@ -85,6 +91,12 @@ private fun getServiceBackgroundGradient(title: String): Brush {
         )
         title.contains("Griha Pravesh", ignoreCase = true) -> Brush.verticalGradient(
             colors = listOf(Color(0xFFBF360C), Color(0xFFE64A19), Color(0xFFFF8A65))
+        )
+        title.contains("Navgrah", ignoreCase = true) -> Brush.verticalGradient(
+            colors = listOf(Color(0xFF311B92), Color(0xFF4527A0), Color(0xFF1A237E))
+        )
+        title.contains("Kaal Sarp", ignoreCase = true) -> Brush.verticalGradient(
+            colors = listOf(Color(0xFF212121), Color(0xFF37474F), Color(0xFF263238))
         )
         title.contains("Mundan", ignoreCase = true) -> Brush.verticalGradient(
             colors = listOf(Color(0xFF4A148C), Color(0xFF6A1B9A), Color(0xFF8E24AA))
@@ -538,6 +550,77 @@ private fun androidx.compose.ui.graphics.drawscope.DrawScope.drawVastuArt(w: Flo
 
     // Sacred Bindu center
     drawCircle(Color(0xFFFFF9C4), 5f, Offset(cx, cy))
+}
+
+// Navgrah Shanti Art: 9 planetary mandalas with central golden Surya
+private fun androidx.compose.ui.graphics.drawscope.DrawScope.drawNavgrahArt(w: Float, h: Float) {
+    val cx = w * 0.5f
+    val cy = h * 0.5f
+    // Aura
+    drawCircle(
+        brush = Brush.radialGradient(
+            colors = listOf(Color(0xFFFFD54F), Color(0xFFFF9800), Color(0x00311B92)),
+            center = Offset(cx, cy),
+            radius = w * 0.45f
+        ),
+        radius = w * 0.45f,
+        center = Offset(cx, cy)
+    )
+    // Central Surya Sun
+    drawCircle(
+        brush = Brush.radialGradient(
+            colors = listOf(Color(0xFFFFF59D), Color(0xFFFFB300), Color(0xFFE65100)),
+            center = Offset(cx, cy),
+            radius = w * 0.16f
+        ),
+        radius = w * 0.16f,
+        center = Offset(cx, cy)
+    )
+    // 8 Surrounding Planets
+    val planetColors = listOf(
+        Color(0xFFFFFFFF), Color(0xFFE53935), Color(0xFF43A047), Color(0xFFFFB300),
+        Color(0xFFE0E0E0), Color(0xFF1E88E5), Color(0xFF757575), Color(0xFF8E24AA)
+    )
+    for (i in 0..7) {
+        val angle = i * (Math.PI * 2 / 8)
+        val px = (cx + Math.cos(angle) * w * 0.30f).toFloat()
+        val py = (cy + Math.sin(angle) * h * 0.30f).toFloat()
+        drawCircle(
+            color = planetColors[i],
+            radius = w * 0.055f,
+            center = Offset(px, py)
+        )
+    }
+}
+
+// Kaal Sarp Dosh Art: Sacred Nag Devata with divine glow and crescent moon
+private fun androidx.compose.ui.graphics.drawscope.DrawScope.drawKaalSarpArt(w: Float, h: Float) {
+    val cx = w * 0.5f
+    val cy = h * 0.52f
+    // Mystic aura
+    drawCircle(
+        brush = Brush.radialGradient(
+            colors = listOf(Color(0xFF80DEEA), Color(0xFF00838F), Color(0x00000000)),
+            center = Offset(cx, cy),
+            radius = w * 0.45f
+        ),
+        radius = w * 0.45f,
+        center = Offset(cx, cy)
+    )
+    // Coiled Naga / Shiva Snake hood
+    val hood = Path().apply {
+        moveTo(cx, cy - h * 0.28f)
+        cubicTo(cx - w * 0.28f, cy - h * 0.18f, cx - w * 0.22f, cy + h * 0.10f, cx, cy + h * 0.22f)
+        cubicTo(cx + w * 0.22f, cy + h * 0.10f, cx + w * 0.28f, cy - h * 0.18f, cx, cy - h * 0.28f)
+        close()
+    }
+    drawPath(
+        path = hood,
+        brush = Brush.verticalGradient(listOf(Color(0xFFE0F7FA), Color(0xFF80DEEA), Color(0xFF006064)))
+    )
+    // Sacred Tilak & Gem on Nag Mastak
+    drawCircle(Color(0xFFFFD54F), radius = w * 0.045f, center = Offset(cx, cy - h * 0.08f))
+    drawCircle(Color(0xFFD50000), radius = w * 0.022f, center = Offset(cx, cy - h * 0.08f))
 }
 
 // 7. Generic Havan Art fallback
